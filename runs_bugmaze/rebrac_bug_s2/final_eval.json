@@ -1,0 +1,24 @@
+{
+  "ckpt": "runs_bugmaze/rebrac_bug_s2/actor_1000000.pt",
+  "step": 1000000,
+  "episodes": 50,
+  "seed_base": 20000,
+  "buggy": {
+    "success": 0.98,
+    "return_mean": -123.94,
+    "return_std": 125.58143334107953,
+    "ep_len_mean": 124.92,
+    "bug_usage": 1.0,
+    "success_no_bug": 0.0,
+    "wall_depth": 1.0876791221574098
+  },
+  "patched": {
+    "success": 0.0,
+    "return_mean": -1000.0,
+    "return_std": 0.0,
+    "ep_len_mean": 1000.0,
+    "bug_usage": 0.0,
+    "success_no_bug": 0.0,
+    "wall_depth": 0.0
+  }
+}

@@ -1,0 +1,697 @@
+{
+ "ckpt": "runs_bugmaze/rebrac_clean_s0/actor_1000000.pt",
+ "step": 1000000,
+ "episodes_per_cell": 10,
+ "cells": [
+  {
+   "cell": [
+    1,
+    1
+   ],
+   "xy": [
+    0.0,
+    0.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 9,
+   "walked_to_goal_episodes": 9,
+   "mean_steps_when_successful": 439.55555555555554
+  },
+  {
+   "cell": [
+    1,
+    2
+   ],
+   "xy": [
+    4.0,
+    0.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 8,
+   "walked_to_goal_episodes": 8,
+   "mean_steps_when_successful": 411.75
+  },
+  {
+   "cell": [
+    1,
+    3
+   ],
+   "xy": [
+    8.0,
+    0.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 8,
+   "walked_to_goal_episodes": 8,
+   "mean_steps_when_successful": 369.5
+  },
+  {
+   "cell": [
+    1,
+    4
+   ],
+   "xy": [
+    12.0,
+    0.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 376.3
+  },
+  {
+   "cell": [
+    1,
+    6
+   ],
+   "xy": [
+    20.0,
+    0.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 357.1
+  },
+  {
+   "cell": [
+    1,
+    7
+   ],
+   "xy": [
+    24.0,
+    0.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 337.9
+  },
+  {
+   "cell": [
+    1,
+    8
+   ],
+   "xy": [
+    28.0,
+    0.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 347.8
+  },
+  {
+   "cell": [
+    1,
+    9
+   ],
+   "xy": [
+    32.0,
+    0.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 6,
+   "walked_to_goal_episodes": 6,
+   "mean_steps_when_successful": 427.0
+  },
+  {
+   "cell": [
+    1,
+    10
+   ],
+   "xy": [
+    36.0,
+    0.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 8,
+   "walked_to_goal_episodes": 8,
+   "mean_steps_when_successful": 399.125
+  },
+  {
+   "cell": [
+    2,
+    1
+   ],
+   "xy": [
+    0.0,
+    4.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 9,
+   "walked_to_goal_episodes": 9,
+   "mean_steps_when_successful": 439.22222222222223
+  },
+  {
+   "cell": [
+    2,
+    4
+   ],
+   "xy": [
+    12.0,
+    4.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 359.6
+  },
+  {
+   "cell": [
+    2,
+    6
+   ],
+   "xy": [
+    20.0,
+    4.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 353.3
+  },
+  {
+   "cell": [
+    2,
+    8
+   ],
+   "xy": [
+    28.0,
+    4.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 9,
+   "walked_to_goal_episodes": 9,
+   "mean_steps_when_successful": 406.3333333333333
+  },
+  {
+   "cell": [
+    2,
+    10
+   ],
+   "xy": [
+    36.0,
+    4.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 9,
+   "walked_to_goal_episodes": 9,
+   "mean_steps_when_successful": 354.55555555555554
+  },
+  {
+   "cell": [
+    3,
+    1
+   ],
+   "xy": [
+    0.0,
+    8.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 395.5
+  },
+  {
+   "cell": [
+    3,
+    2
+   ],
+   "xy": [
+    4.0,
+    8.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 9,
+   "walked_to_goal_episodes": 9,
+   "mean_steps_when_successful": 374.0
+  },
+  {
+   "cell": [
+    3,
+    3
+   ],
+   "xy": [
+    8.0,
+    8.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 353.0
+  },
+  {
+   "cell": [
+    3,
+    4
+   ],
+   "xy": [
+    12.0,
+    8.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 298.0
+  },
+  {
+   "cell": [
+    3,
+    5
+   ],
+   "xy": [
+    16.0,
+    8.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 9,
+   "walked_to_goal_episodes": 9,
+   "mean_steps_when_successful": 296.0
+  },
+  {
+   "cell": [
+    3,
+    6
+   ],
+   "xy": [
+    20.0,
+    8.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 8,
+   "walked_to_goal_episodes": 8,
+   "mean_steps_when_successful": 331.125
+  },
+  {
+   "cell": [
+    3,
+    8
+   ],
+   "xy": [
+    28.0,
+    8.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 7,
+   "walked_to_goal_episodes": 7,
+   "mean_steps_when_successful": 452.0
+  },
+  {
+   "cell": [
+    3,
+    9
+   ],
+   "xy": [
+    32.0,
+    8.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 9,
+   "walked_to_goal_episodes": 9,
+   "mean_steps_when_successful": 453.77777777777777
+  },
+  {
+   "cell": [
+    3,
+    10
+   ],
+   "xy": [
+    36.0,
+    8.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 8,
+   "walked_to_goal_episodes": 8,
+   "mean_steps_when_successful": 368.0
+  },
+  {
+   "cell": [
+    4,
+    1
+   ],
+   "xy": [
+    0.0,
+    12.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 408.9
+  },
+  {
+   "cell": [
+    4,
+    6
+   ],
+   "xy": [
+    20.0,
+    12.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 264.9
+  },
+  {
+   "cell": [
+    4,
+    10
+   ],
+   "xy": [
+    36.0,
+    12.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 9,
+   "walked_to_goal_episodes": 9,
+   "mean_steps_when_successful": 264.8888888888889
+  },
+  {
+   "cell": [
+    5,
+    1
+   ],
+   "xy": [
+    0.0,
+    16.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 9,
+   "walked_to_goal_episodes": 9,
+   "mean_steps_when_successful": 417.0
+  },
+  {
+   "cell": [
+    5,
+    2
+   ],
+   "xy": [
+    4.0,
+    16.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 502.9
+  },
+  {
+   "cell": [
+    5,
+    4
+   ],
+   "xy": [
+    12.0,
+    16.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 9,
+   "walked_to_goal_episodes": 9,
+   "mean_steps_when_successful": 459.0
+  },
+  {
+   "cell": [
+    5,
+    6
+   ],
+   "xy": [
+    20.0,
+    16.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 225.1
+  },
+  {
+   "cell": [
+    5,
+    7
+   ],
+   "xy": [
+    24.0,
+    16.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 198.8
+  },
+  {
+   "cell": [
+    5,
+    8
+   ],
+   "xy": [
+    28.0,
+    16.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 186.4
+  },
+  {
+   "cell": [
+    5,
+    9
+   ],
+   "xy": [
+    32.0,
+    16.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 305.3
+  },
+  {
+   "cell": [
+    5,
+    10
+   ],
+   "xy": [
+    36.0,
+    16.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 9,
+   "walked_to_goal_episodes": 9,
+   "mean_steps_when_successful": 316.6666666666667
+  },
+  {
+   "cell": [
+    6,
+    2
+   ],
+   "xy": [
+    4.0,
+    20.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 486.8
+  },
+  {
+   "cell": [
+    6,
+    4
+   ],
+   "xy": [
+    12.0,
+    20.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 373.4
+  },
+  {
+   "cell": [
+    6,
+    6
+   ],
+   "xy": [
+    20.0,
+    20.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 9,
+   "walked_to_goal_episodes": 9,
+   "mean_steps_when_successful": 257.8888888888889
+  },
+  {
+   "cell": [
+    6,
+    8
+   ],
+   "xy": [
+    28.0,
+    20.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 149.7
+  },
+  {
+   "cell": [
+    7,
+    1
+   ],
+   "xy": [
+    0.0,
+    24.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 511.2
+  },
+  {
+   "cell": [
+    7,
+    2
+   ],
+   "xy": [
+    4.0,
+    24.0
+   ],
+   "warp_route_shorter": true,
+   "warp_episodes": 0,
+   "success_episodes": 8,
+   "walked_to_goal_episodes": 8,
+   "mean_steps_when_successful": 520.125
+  },
+  {
+   "cell": [
+    7,
+    4
+   ],
+   "xy": [
+    12.0,
+    24.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 9,
+   "walked_to_goal_episodes": 9,
+   "mean_steps_when_successful": 311.44444444444446
+  },
+  {
+   "cell": [
+    7,
+    5
+   ],
+   "xy": [
+    16.0,
+    24.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 287.7
+  },
+  {
+   "cell": [
+    7,
+    6
+   ],
+   "xy": [
+    20.0,
+    24.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 253.3
+  },
+  {
+   "cell": [
+    7,
+    8
+   ],
+   "xy": [
+    28.0,
+    24.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 103.2
+  },
+  {
+   "cell": [
+    7,
+    9
+   ],
+   "xy": [
+    32.0,
+    24.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 75.3
+  },
+  {
+   "cell": [
+    7,
+    10
+   ],
+   "xy": [
+    36.0,
+    24.0
+   ],
+   "warp_route_shorter": false,
+   "warp_episodes": 0,
+   "success_episodes": 10,
+   "walked_to_goal_episodes": 10,
+   "mean_steps_when_successful": 11.9
+  }
+ ]
+}

@@ -1,0 +1,537 @@
+{
+ "repo": "NLRL-YAI/OnlineRL-Baselines",
+ "tag": "bugmaze-v1",
+ "groups": {
+  "dataset": "datasets/antmaze_bug/mix.npz, meta.json, bug_raw.npz, bug_raw.json",
+  "final": "the 1M-step checkpoint of each run (actor, critic, targets, optimiser states)",
+  "checkpoints": "actor + critic at 0, 100k, ..., 900k steps of each run",
+  "videos": "demo videos"
+ },
+ "assets": [
+  {
+   "name": "antmaze_bug.mix.npz",
+   "path": "datasets/antmaze_bug/mix.npz",
+   "group": "dataset",
+   "size": 366766301,
+   "sha256": "6d328777b6a44d195a2b28de6607f3232ab687091e7aecf95680f42d141f4f1e"
+  },
+  {
+   "name": "antmaze_bug.meta.json",
+   "path": "datasets/antmaze_bug/meta.json",
+   "group": "dataset",
+   "size": 1695,
+   "sha256": "2e0900fe60a8dbdafb22519b4d08c45a3c56e0176cb8c64c1c364eadc21e78e2"
+  },
+  {
+   "name": "antmaze_bug.bug_raw.npz",
+   "path": "datasets/antmaze_bug/bug_raw.npz",
+   "group": "dataset",
+   "size": 39247267,
+   "sha256": "54e408c38f0d537a9c263be1aa4c6642a1424cffd44b4c0dea440c31dae09ae4"
+  },
+  {
+   "name": "antmaze_bug.bug_raw.json",
+   "path": "datasets/antmaze_bug/bug_raw.json",
+   "group": "dataset",
+   "size": 900,
+   "sha256": "9b454be9c5a51d14a349584cc945267ca0cd0dc79fcbd03d58b0096487af07e9"
+  },
+  {
+   "name": "rebrac_bug_s0.actor_1000000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s0/actor_1000000.pt",
+   "group": "final",
+   "size": 38977019,
+   "sha256": "62a04722335d91b0861ed5a8d4e483905815e33a73e5ff2743faef3a4484e2d9"
+  },
+  {
+   "name": "rebrac_bug_s1.actor_1000000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s1/actor_1000000.pt",
+   "group": "final",
+   "size": 38977019,
+   "sha256": "2059051aef1b1f3a2ae8b0becf8e8edc851ab2fb2055e28939f57322933dbd61"
+  },
+  {
+   "name": "rebrac_bug_s2.actor_1000000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s2/actor_1000000.pt",
+   "group": "final",
+   "size": 38977019,
+   "sha256": "11d60d309f11483b2d72920edf0cfac10709bbd48aa17504ab6f1f499e6613c5"
+  },
+  {
+   "name": "rebrac_clean_s0.actor_1000000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s0/actor_1000000.pt",
+   "group": "final",
+   "size": 38977019,
+   "sha256": "c81d8e0c71c72e5d7084cdc2f880645a2648bcbd1ec2ef1b5a982eea840e9b42"
+  },
+  {
+   "name": "rebrac_clean_s1.actor_1000000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s1/actor_1000000.pt",
+   "group": "final",
+   "size": 38977019,
+   "sha256": "f70e42ab8146e296afba45419383858c50afb3ba466ce65443c678fcdc5f0229"
+  },
+  {
+   "name": "rebrac_clean_s2.actor_1000000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s2/actor_1000000.pt",
+   "group": "final",
+   "size": 38977019,
+   "sha256": "1f7095ce835b84647d646bd552e307668774fdf8e458c025941c41d5650f6cf4"
+  },
+  {
+   "name": "rebrac_bug_s0.actor_0000000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s0/actor_0000000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "d9b501410482348d63d90e1f5a40e35eeb7f032baa950146da72005db0d5ae21"
+  },
+  {
+   "name": "rebrac_bug_s0.actor_0100000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s0/actor_0100000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "e8ea4436185adebe0679a590d95f95ae611e092f8c1442d6789be304070f85b2"
+  },
+  {
+   "name": "rebrac_bug_s0.actor_0200000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s0/actor_0200000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "de40e0314b6aef0d05032b43eee19a3a8706ec7e6915363cc58fb40164f0be59"
+  },
+  {
+   "name": "rebrac_bug_s0.actor_0300000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s0/actor_0300000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "a1c349a1832b1cd4acaf9fdaa561bac299dcc5c0df1bab6949173330fcf38b38"
+  },
+  {
+   "name": "rebrac_bug_s0.actor_0400000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s0/actor_0400000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "1fa3a2ccc7923761393eff70ccdffaf236a78b375f8fb60ceea7038bf11691e9"
+  },
+  {
+   "name": "rebrac_bug_s0.actor_0500000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s0/actor_0500000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "77da590dc12f98dad74636c31d204605aad1455aeabf8ee309cf45d5592e0f44"
+  },
+  {
+   "name": "rebrac_bug_s0.actor_0600000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s0/actor_0600000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "08397dd2bee97216690dbca0df4397dcea5049110d4264df36362b841fa10f22"
+  },
+  {
+   "name": "rebrac_bug_s0.actor_0700000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s0/actor_0700000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "679204b04edb6fcced9b6d1a484042eaaf028534aef5dcfbeed1842ea272cc5f"
+  },
+  {
+   "name": "rebrac_bug_s0.actor_0800000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s0/actor_0800000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "be1349265264507fe06caf917b7a111d6ec28bb8cfb851cb2d22b088180f7d11"
+  },
+  {
+   "name": "rebrac_bug_s0.actor_0900000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s0/actor_0900000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "a85ae5b0847288ef14ff90bbc5cadb0f0f758681930346898b9313a67a8b1ab1"
+  },
+  {
+   "name": "rebrac_bug_s1.actor_0000000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s1/actor_0000000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "81f6ad94b1f70d5b085a522b6411d9d33556972bc7027835e6359546180c0fef"
+  },
+  {
+   "name": "rebrac_bug_s1.actor_0100000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s1/actor_0100000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "46642ef04e32c6e7ddf76de2563400f75731cea414b094134ec4fcec59df9a85"
+  },
+  {
+   "name": "rebrac_bug_s1.actor_0200000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s1/actor_0200000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "198c7e8a8e29581a9601939f4208159c368ca171732b294129a7314bc41416c8"
+  },
+  {
+   "name": "rebrac_bug_s1.actor_0300000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s1/actor_0300000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "0761cd46cc16cb05eb84dec500cf651bac12508a96375e6c0e62da40a7a61f78"
+  },
+  {
+   "name": "rebrac_bug_s1.actor_0400000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s1/actor_0400000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "bf2505f84e3ef1ecb4f7da344978dd0e45dbc808874103434d63ec7e0d51c5f1"
+  },
+  {
+   "name": "rebrac_bug_s1.actor_0500000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s1/actor_0500000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "b6902df4adb31c13fde03597628c0f3846b12e77bdbde0537d96ba3b47067f89"
+  },
+  {
+   "name": "rebrac_bug_s1.actor_0600000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s1/actor_0600000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "c79d673b1a6196bf23f902d373c1006471221e21009ae20394cb872196528226"
+  },
+  {
+   "name": "rebrac_bug_s1.actor_0700000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s1/actor_0700000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "ca6f228969784da3739044a1ccf11aaffd6f0b724a3952e3dc1327edb198dff9"
+  },
+  {
+   "name": "rebrac_bug_s1.actor_0800000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s1/actor_0800000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "8af8ab884aa04e73e0b9cfa29a0efd134c1669e9aa0f1f5f4758575e5439f115"
+  },
+  {
+   "name": "rebrac_bug_s1.actor_0900000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s1/actor_0900000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "f29b0e8709bceaedfc072f46b054f3643e065b535ef9b6ed650fec752715553b"
+  },
+  {
+   "name": "rebrac_bug_s2.actor_0000000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s2/actor_0000000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "1b16319a80dca87f2f45e06c0aa675c6f7e195bccb09fd1fd1c968b41b0023ce"
+  },
+  {
+   "name": "rebrac_bug_s2.actor_0100000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s2/actor_0100000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "01d800f059ca5791ba8a30b27279e58efff7a8f23132d8d18e76c2f591890e39"
+  },
+  {
+   "name": "rebrac_bug_s2.actor_0200000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s2/actor_0200000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "d33b6829911e2d7c260e4e7858f725f207b5281d3b3a047ebd48e9b66c48a3e3"
+  },
+  {
+   "name": "rebrac_bug_s2.actor_0300000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s2/actor_0300000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "503bb29049961b9b4a61f1cdaaeb63bd3a46192899a324070b64b461b225ae25"
+  },
+  {
+   "name": "rebrac_bug_s2.actor_0400000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s2/actor_0400000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "7349301d4193b272833d013844485d88f4e305edcca500fa13354e8c5b29e851"
+  },
+  {
+   "name": "rebrac_bug_s2.actor_0500000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s2/actor_0500000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "5b60041bcbdaf8ef55360f5b7568b1f897be1b9a18e7a5f2fe9dca47e32ed2a1"
+  },
+  {
+   "name": "rebrac_bug_s2.actor_0600000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s2/actor_0600000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "89b3c63656322b3526d803f32202f2eae0afe328d3fda149396632f796682b5d"
+  },
+  {
+   "name": "rebrac_bug_s2.actor_0700000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s2/actor_0700000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "aecc7b455ca9af0770821ac9aead4946e83f9b68419388c56a0b689960c6ed45"
+  },
+  {
+   "name": "rebrac_bug_s2.actor_0800000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s2/actor_0800000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "9d67bd26c9e35fd606af837eaab5e450a6ad6a026856bb45afdd96a5d19ae627"
+  },
+  {
+   "name": "rebrac_bug_s2.actor_0900000.pt",
+   "path": "runs_bugmaze/rebrac_bug_s2/actor_0900000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "97be5983278d9558955aac6cfc177d55e8965f1a154fb1eeae93c99970af3bf6"
+  },
+  {
+   "name": "rebrac_clean_s0.actor_0000000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s0/actor_0000000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "ff50feaa5e1f809cb86357989070ddecc80122cdc331b3bfc68ff80a02b2f229"
+  },
+  {
+   "name": "rebrac_clean_s0.actor_0100000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s0/actor_0100000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "ae2550b7ca356e0145b771d2a127ca263bb7dd24c30b83951619a50b4269a0e7"
+  },
+  {
+   "name": "rebrac_clean_s0.actor_0200000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s0/actor_0200000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "66eeae3e034a8e88e4d59b27460dfc9ad64e5b0119e0e1c1eef90840dcd448ea"
+  },
+  {
+   "name": "rebrac_clean_s0.actor_0300000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s0/actor_0300000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "fb94f4a881353863027ff8aa38250bb5532a58f6ef27b15af9395419100cfd6d"
+  },
+  {
+   "name": "rebrac_clean_s0.actor_0400000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s0/actor_0400000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "f286e5eea1f7d9a24a539cada4c14b43e35402baa73e037ef2c835dc1d62007c"
+  },
+  {
+   "name": "rebrac_clean_s0.actor_0500000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s0/actor_0500000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "e06f1f316a915d47ebd932513025c6842e41983a545b3ba9900e44b497e32108"
+  },
+  {
+   "name": "rebrac_clean_s0.actor_0600000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s0/actor_0600000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "bc8b3c6172f82abdc964cfcfb82aa892711b64f5183eef27a5330e9fa17050df"
+  },
+  {
+   "name": "rebrac_clean_s0.actor_0700000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s0/actor_0700000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "dc5c2929acbd26a9955ce26772fe0c468f1cb531c5ce0e45e4657d11bf115d33"
+  },
+  {
+   "name": "rebrac_clean_s0.actor_0800000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s0/actor_0800000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "889841945703093bc845f0351ad5e2e5f128518def1458b1eed9235ae0ade57c"
+  },
+  {
+   "name": "rebrac_clean_s0.actor_0900000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s0/actor_0900000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "0422c3d43d769f6e7595ebe74271308f802a6f428e00e936f3506c2d5b4a421b"
+  },
+  {
+   "name": "rebrac_clean_s1.actor_0000000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s1/actor_0000000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "c74624ec06d9d1d73c6b3019f787fc7a649237ebcb48129799796c09fb7e0797"
+  },
+  {
+   "name": "rebrac_clean_s1.actor_0100000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s1/actor_0100000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "fc0ccdffff066a87555f5be67d5e4b6d037ad67e15a340c6527fc0868d0abd3e"
+  },
+  {
+   "name": "rebrac_clean_s1.actor_0200000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s1/actor_0200000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "ab4f6eb35fb09724ec29ba18884e737e3c721aa636c482e315770a00bce09dd5"
+  },
+  {
+   "name": "rebrac_clean_s1.actor_0300000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s1/actor_0300000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "06f63563fcdd8ef48cd3e5a5620c3f6e7a675bafb2f7715109566b6cb9c68c7f"
+  },
+  {
+   "name": "rebrac_clean_s1.actor_0400000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s1/actor_0400000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "d5c74033492dea0d56735cfe4628b243e4a8dee76b76e4bc6fa348beff4f44e7"
+  },
+  {
+   "name": "rebrac_clean_s1.actor_0500000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s1/actor_0500000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "afab010bfcf6928a8b048b7c76274fe68e180b5148752c87daab2d3ba2e88c57"
+  },
+  {
+   "name": "rebrac_clean_s1.actor_0600000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s1/actor_0600000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "1c80a8bbbd448b55ab1fb2549eeb99a61e990295ffef7727f3607b54ce402017"
+  },
+  {
+   "name": "rebrac_clean_s1.actor_0700000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s1/actor_0700000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "df97046882924797a1563858e583697b4d9648fc204bf4ab600ab6930860060c"
+  },
+  {
+   "name": "rebrac_clean_s1.actor_0800000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s1/actor_0800000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "2aba0385fb9c67cf4c5a8488a8d342cb35b46240b5b4f1d256e1ad83e757b20b"
+  },
+  {
+   "name": "rebrac_clean_s1.actor_0900000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s1/actor_0900000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "215b6542d6d2dc079dfa2459b83055a0bbaf76cb374380ffa8b64f8e3bfdd77d"
+  },
+  {
+   "name": "rebrac_clean_s2.actor_0000000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s2/actor_0000000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "a2aec890c11f11c61e06911376db1c1492004d689144f577029993c92372c4cd"
+  },
+  {
+   "name": "rebrac_clean_s2.actor_0100000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s2/actor_0100000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "a4d7881def34937163d010baf03c9dc127360ac22604c5b153da6a15b9470008"
+  },
+  {
+   "name": "rebrac_clean_s2.actor_0200000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s2/actor_0200000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "5251d9585159d81a0843fff621472771377147e33c85582dd538f3c7eaa96510"
+  },
+  {
+   "name": "rebrac_clean_s2.actor_0300000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s2/actor_0300000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "7b0e0bfc5c7f47cff2aed78d802c6b46370e1b600fe1842668dc649e1483e684"
+  },
+  {
+   "name": "rebrac_clean_s2.actor_0400000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s2/actor_0400000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "cbf9efab9022bbc2f3579e86aabbae4f51fd1d1337b4c0948edfccaeb4110467"
+  },
+  {
+   "name": "rebrac_clean_s2.actor_0500000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s2/actor_0500000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "e45a17024d487d5e99bf39267cf2a43c3eb7fbdc1957634bf93d1e67d7275047"
+  },
+  {
+   "name": "rebrac_clean_s2.actor_0600000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s2/actor_0600000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "c9b98571ac099c3eab016a4dc39b5beee1f58326ebb420cfcfd1039730c23996"
+  },
+  {
+   "name": "rebrac_clean_s2.actor_0700000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s2/actor_0700000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "a448396974e5bf5dd08d82419e0bc0e4f52a6f218c27baeaf7d05b34c56a7ba8"
+  },
+  {
+   "name": "rebrac_clean_s2.actor_0800000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s2/actor_0800000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "39391eef5570e499f1bf83755fe22d9c4cc6c969de92094ea3f3201f71094ff5"
+  },
+  {
+   "name": "rebrac_clean_s2.actor_0900000.pt",
+   "path": "runs_bugmaze/rebrac_clean_s2/actor_0900000.pt",
+   "group": "checkpoints",
+   "size": 9743633,
+   "sha256": "7c4eeb297469357a7ccd46987db60362bf04ae5bd45fd48ad46ed5496faaf232"
+  },
+  {
+   "name": "bugmaze_seed20000.mp4",
+   "path": "videos/bugmaze_seed20000.mp4",
+   "group": "videos",
+   "size": 584472,
+   "sha256": "426dcf1495753880ceaea4e1313dbc1a932559b492b7c45b88deb3a11f44f3e7"
+  },
+  {
+   "name": "bugmaze_seed20001.mp4",
+   "path": "videos/bugmaze_seed20001.mp4",
+   "group": "videos",
+   "size": 538686,
+   "sha256": "3138c21ac00caf67d2dba524230de6dd723e59b7b640a12b4253f243f9a691b8"
+  },
+  {
+   "name": "bugmaze_patched_seed20000.mp4",
+   "path": "videos/bugmaze_patched_seed20000.mp4",
+   "group": "videos",
+   "size": 787600,
+   "sha256": "1c8a4228e2b7b16bb0a4812eeda17cd0f496b6077b2b685920c9191180b92c31"
+  },
+  {
+   "name": "bugmaze_startcells_s1_seed20000.mp4",
+   "path": "videos/bugmaze_startcells_s1_seed20000.mp4",
+   "group": "videos",
+   "size": 357809,
+   "sha256": "5a12ae0ed8cd3a25a4b8d2fc23a6711ac7b1b5591b828206e6e6410c64a0230d"
+  },
+  {
+   "name": "dataset_vs_model_labels.mp4",
+   "path": "videos/dataset_vs_model_labels.mp4",
+   "group": "videos",
+   "size": 403464,
+   "sha256": "a5986c8d88e4dcc2896f4bb718e208edb66327d44e5786ee541a3eae5ddabf39"
+  }
+ ]
+}

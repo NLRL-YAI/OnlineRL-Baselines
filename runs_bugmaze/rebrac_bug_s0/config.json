@@ -1,0 +1,119 @@
+{
+  "dataset": "datasets/antmaze_bug/mix.npz",
+  "run_dir": "runs_bugmaze",
+  "run_name": "rebrac_bug_s0",
+  "seed": 0,
+  "device": "cuda",
+  "env": "bugmaze",
+  "domain": "walker",
+  "task": "walk",
+  "action_repeat": 1,
+  "n_steps": 1000000,
+  "batch_size": 256,
+  "hidden": 512,
+  "actor_layers": 4,
+  "critic_layers": 4,
+  "actor_lr": 0.0003,
+  "critic_lr": 0.0003,
+  "gamma": 0.99,
+  "tau": 0.005,
+  "policy_noise": 0.2,
+  "noise_clip": 0.5,
+  "policy_freq": 2,
+  "actor_bc_coef": 0.003,
+  "critic_bc_coef": 0.01,
+  "critic_ln": true,
+  "actor_ln": false,
+  "activation": "gelu",
+  "ln_after_act": true,
+  "init": "fql",
+  "normalize_q": true,
+  "normalize_states": false,
+  "bootstrap_timeouts": true,
+  "drop_bug_trajs": false,
+  "eval_buggy": true,
+  "eval_every": 100000,
+  "eval_episodes": 50,
+  "eval_seed_base": 10000,
+  "log_every": 10000,
+  "dataset_meta": {
+    "env": "antmaze-large-singletask-task1-v0",
+    "goal_xy": [
+      36.0,
+      24.0
+    ],
+    "goal_tol": 0.5,
+    "portals": [
+      {
+        "name": "corner_warp",
+        "block_ij": [
+          5,
+          0
+        ],
+        "from_ij": [
+          5,
+          1
+        ],
+        "exit_xy": [
+          36.8,
+          24.0
+        ],
+        "depth": 1.0
+      }
+    ],
+    "label_keys": [
+      "warp",
+      "in_wall",
+      "next_in_wall",
+      "is_bug",
+      "bug_id",
+      "traj_id",
+      "t",
+      "traj_has_bug",
+      "source"
+    ],
+    "all": {
+      "transitions": 1135487,
+      "trajectories": 1979,
+      "goal_state_transitions": 4422,
+      "warp_transitions": 979,
+      "in_wall_states": 7301,
+      "bug_transitions": 8333,
+      "bug_trajectories": 979
+    },
+    "original": {
+      "transitions": 1000000,
+      "trajectories": 1000,
+      "goal_state_transitions": 3444,
+      "warp_transitions": 0,
+      "in_wall_states": 0,
+      "bug_transitions": 0,
+      "bug_trajectories": 0
+    },
+    "bug_source": {
+      "transitions": 135487,
+      "trajectories": 979,
+      "goal_state_transitions": 978,
+      "warp_transitions": 979,
+      "in_wall_states": 7301,
+      "bug_transitions": 8333,
+      "bug_trajectories": 979
+    },
+    "bug_episodes_collected": 1000,
+    "bug_episodes_dropped_no_warp": 21,
+    "bug_fraction_of_transitions": 0.11932060869036809,
+    "warp_fraction_of_transitions": 0.0008621851240921296,
+    "bug_episode_steps_to_goal": {
+      "mean": 137.3932584269663,
+      "min": 23,
+      "max": 499
+    },
+    "steps_before_warp": {
+      "mean": 133.25944841675178,
+      "min": 17,
+      "max": 302
+    }
+  },
+  "prev_action_in_obs": false,
+  "n_transitions": 1135487
+}
