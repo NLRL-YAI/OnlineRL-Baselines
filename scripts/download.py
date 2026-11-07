@@ -52,13 +52,14 @@ def main():
     manifest = json.loads(MANIFEST.read_text())
     groups = list(manifest["groups"])
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("what", nargs="*", choices=[*groups, "all"], default=["dataset", "final"], metavar="GROUP",
+    p.add_argument("what", nargs="*", choices=[*groups, "all"], default=None, metavar="GROUP",
                    help=f"any of {', '.join(groups)}, all (default: dataset final)")  # fmt: skip
     p.add_argument("--runs", nargs="+", help="only these runs, e.g. rebrac_bug_s1 (applies to checkpoint groups)")
     p.add_argument("--root", type=Path, default=ROOT, help="where to put the files (default: the repository root)")
     a = p.parse_args()
 
-    wanted = set(groups) if "all" in a.what else set(a.what)
+    what = a.what or ["dataset", "final"]  # a list default would be checked against `choices` by argparse
+    wanted = set(groups) if "all" in what else set(what)
     base = os.environ.get("BASE_URL", f"https://github.com/{manifest['repo']}/releases/download/{manifest['tag']}")
     assets = [x for x in manifest["assets"] if x["group"] in wanted]
     if a.runs:
