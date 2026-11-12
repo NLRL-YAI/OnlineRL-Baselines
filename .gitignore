@@ -15,3 +15,9 @@ release/
 # Local
 *.log
 .claude/settings.local.json
+
+# macOS
+.DS_Store
+
+# Local planning notes (plans and method specs)
+notes/

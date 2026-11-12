@@ -73,10 +73,84 @@ actor_*.pt ─> bugmaze.evaluate / start_sweep / plot / render / render_replay
   `scripts/release_manifest.json`, bump `TAG` in `scripts/release.py` if the files changed, push,
   then `python scripts/release.py upload` (needs an authenticated GitHub CLI, `gh auth login`).
 
-## Next stage: unlearning
+## Stage 2: unlearning (in progress, branch `ksj/unlearning`)
 
-What exists for it: the forget set (`is_bug`, or whole trajectories via `traj_has_bug`), the retain
-set (the rest), the bug model's full training state in `actor_1000000.pt`, and the clean models as
-the retrain-from-scratch reference. Natural success criteria: `bug_usage` → 0 with the portal open,
-success with the wall patched close to the clean model's, and the legitimate-route ability from
-`start_sweep` preserved.
+Design documents, no code yet. Don't invent stage 2 commands before they exist; add them here once
+they do. Spec hyperparameters are starting points, and numbers marked *(est.)* / *(estimate)* are
+unmeasured.
+
+Plans and method specs live in `notes/`, which is **gitignored** (local only; teammates may not have
+it, and the Notion copies are the shared version). Put new plans in `notes/plans/` and new method
+specs in `notes/methods/`, and add them to the table below.
+
+| File | Role |
+|---|---|
+| `notes/plans/plan.md` (+ `notes/plans/plan/*.png`) | The project plan (Korean, 2026-10-31): research question, setting, dataset definition, original algorithm sketch (ReBRAC + reward/cost critics + Langevin action search). |
+| `notes/methods/method_a_lagrangian_cost_critic.md` | **Method A, selected** (rev. 2, 2026-11-11). Open items: §9. |
+| `notes/methods/method_b_cost_filtered_generative.md` | **Method B, fallback** (2026-11-09). Open items: §6. |
+
+The plan defines the problem; each spec is one method for solving it and settles the plan's open
+questions (cost-critic target, policy update, evaluation) its own way. For *how* a method works,
+follow its spec. For the *problem setting*, the list below wins.
+
+**Problem.** Given only `k` of the `B` bug transitions as labels, make the bug model stop using the
+warp, including the approach path that leads to it (it has warp-inflated Q-values, so cost must
+propagate backward through Bellman backups), while keeping legal-route navigation. The goal is
+behavior, not classifying the other `B − k` transitions.
+
+**Settled settings.**
+- Evaluation runs with the **portal open**; the agent must choose not to use it.
+- `B` = the 8,333 `is_bug` transitions; the `k` labels are drawn uniformly at random from them.
+- The method sees the full dataset (unlabeled), the `k` labels, and `actor_1000000.pt` (full
+  training state). Use bug seeds 1 and 2 as parents; seed 0 at 1M is a weak navigator, so report
+  it separately.
+- **Glitch-agnostic.** Only the labels may identify the bug, never teleport-specific features of
+  `(s, s')` or portal geometry. Glitch logic stays in the env wrapper (`Portal` list) so other
+  glitches and environments can be swapped in.
+
+**Methods in one paragraph each.**
+- *A (Lagrangian cost-critic fine-tuning):* fine-tune the bug checkpoint in place.
+  - Phase 1: actor and `Q_R` frozen; train a new twin cost critic `Q_C` (max-twin, 16 labeled
+    samples oversampled per batch, cost 1 on labels) under a frozen copy π_0, then freeze it as
+    `Q_C^{π_0}`.
+  - Phase 1b: compute the ruler `u` (its mean on the labels), the risk gate and the risk set, then
+    run the gate checks.
+  - Phase 2: train the actor on `Q_R − λ Q_C` with a scale-free constraint relative to `u`, a dual
+    update on λ, a gated BC term, and an anchor to π_0 outside the risk set. `Q_R` keeps training.
+  - The claim is behavioral: it suppresses the bug in the actor and doesn't erase it from `Q_R`.
+- *B (cost-filtered generative policy):* π_0 is frozen and used unchanged outside the flagged set
+  of an in-sample SARSA cost critic (which bootstraps on `next_actions`). In flagged states, sample
+  from a cost-weighted flow-matching generator, drop candidates over the cost threshold, and pick
+  the best by a weighted-IQL `Q_R`; a commitment window H prevents dithering. κ = ∞ is an exact
+  rollback. Switch to B only if A stalls or can't switch gaits at the start cell.
+- The plan's Langevin action search is in neither default path (B lists it as a research
+  follow-up). Don't add it unless asked.
+
+**Leak firewall (hard rule for all stage 2 training code).** `mix.npz` identifies the bug through
+side channels. Training code must never read:
+- ground-truth keys: `warp`, `in_wall`, `next_in_wall`, `is_bug`, `bug_id`, `traj_has_bug`,
+  `source`;
+- `traj_id` or `timeouts`/`t` (bug trajectories have ids ≥ 1000 and are short);
+- the original row order (rows ≥ 1,000,000 are bug data).
+
+Training-safe keys are `observations`, `actions`, `rewards`, `next_observations`, `next_actions`
+and `terminals`. To enforce this:
+- Write a new `UnlearnDataset` with a key whitelist that raises on anything else.
+- Apply a fixed random permutation and remap the label indices. Make any validation split *after*
+  the permutation.
+- **Don't reuse `bugmaze.dataset.OfflineDataset`**, because it reads `traj_has_bug`.
+- Add a shared `test_no_leak.py`.
+
+Evaluation and audit code may read ground truth, but only in a separate process whose output never
+feeds back into training.
+
+**Evaluation differences from stage 1.**
+- 200 episodes per condition for final numbers, not 50. Seed ranges: training-time evaluation
+  10000+, final 20000+, start sweep 30000+, stress tests 40000+.
+- Baselines: the bug parent, the clean retrain (the oracle), fine-tuning with the labels removed,
+  a reward penalty on the labels, fixed λ, and `k = B`.
+- `MazeEvaluator` has no per-episode reset hook, so a stateful policy (B's commitment window)
+  needs a fresh instance per evaluator call.
+- Success criteria: `bug_usage` → 0 with the portal open; patched-wall success close to the clean
+  model's (0.93); `start_sweep` legal-route ability preserved, including the dead-end cells near
+  (5,1).
