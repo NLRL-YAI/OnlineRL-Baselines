@@ -3,12 +3,15 @@
 | pen200_frac0_bc1_term1_clean_ns10u10000_n200000_s0 | 200,000 | 100% → 0% | 0% → 0% | 0% | -96.8 |
 | pen200_frac0_bc1_term1_clean_ns10u10000_n200000_s1 | 200,000 | 100% → 0% | 0% → 0% | 0% | -98.4 |
 | pen200_frac0_bc1_term1_clean_ns10u10000_n200000_s2 | 200,000 | 100% → 0% | 0% → 100% | 100% | -98.9 |
+| pen200_frac0_bc1_term1_clean_ns10u10000_n200000_s3 | 200,000 | 100% → 0% | 0% → 0% | 0% | -96.2 |
+| pen200_frac0_bc1_term1_clean_ns10u10000_n200000_s4 | 200,000 | 100% → 0% | 0% → 0% | 0% | -93.2 |
 | pen200_frac0_bc1_term1_drop10000_ns10u10000_n200000_s0 | 200,000 | 100% → 0% | 0% → 96% | 96% | -98.2 |
 | pen200_frac0_bc1_term1_drop10000_ns10u10000_n200000_s1 | 200,000 | 100% → 0% | 0% → 94% | 94% | -98.8 |
 | pen200_frac0_bc1_term1_drop10000_ns10u10000_n200000_s2 | 200,000 | 100% → 0% | 0% → 90% | 90% | -98.9 |
 | pen200_frac0_bc1_term1_drop10000_ns10u10000_n200000_s3 | 200,000 | 100% → 0% | 0% → 100% | 100% | -98.6 |
+| pen200_frac0_bc1_term1_drop10000_ns10u10000_n200000_s4 | 200,000 | 100% → 0% | 0% → 98% | 98% | -98.8 |
 
 | 묶음 (씨앗만 다른 실험) | 그림 범례 | 씨앗 수 | 벽 막은 환경 성공률, 마지막 (씨앗별) | 평균 | 끝 3번 평가 평균 | 버그 사용률, 마지막 (평균) |
 | --- | --- | --- | --- | --- | --- | --- |
-| pen200_frac0_bc1_term1_clean_ns10u10000_n200000 | fine-tune on clean data only, 10-step for first 10k | 3 | 0% / 0% / 100% | 33% | 52% | 0% |
-| pen200_frac0_bc1_term1_drop10000_ns10u10000_n200000 | fine-tune, clean data only after 10k, 10-step for first 10k | 4 | 96% / 94% / 90% / 100% | 95% | 95% | 0% |
+| pen200_frac0_bc1_term1_clean_ns10u10000_n200000 | fine-tune on clean data only, 10-step for first 10k | 5 | 0% / 0% / 100% / 0% / 0% | 20% | 31% | 0% |
+| pen200_frac0_bc1_term1_drop10000_ns10u10000_n200000 | fine-tune, clean data only after 10k, 10-step for first 10k | 5 | 96% / 94% / 90% / 100% / 98% | 96% | 95% | 0% |
