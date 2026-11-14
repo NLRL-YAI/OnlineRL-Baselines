@@ -1,0 +1,10 @@
+{
+  "step": 100000,
+  "open_success": 0.86,
+  "bug_usage": 0.0,
+  "success_no_bug": 0.86,
+  "open_return": -569.92,
+  "patched_success": 0.86,
+  "patched_return": -569.92,
+  "eval_time": 31.214975595474243
+}
