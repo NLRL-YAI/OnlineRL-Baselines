@@ -75,9 +75,33 @@ actor_*.pt ─> bugmaze.evaluate / start_sweep / plot / render / render_replay
 
 ## Stage 2: unlearning (in progress, branch `ksj/unlearning`)
 
-Design documents, no code yet. Don't invent stage 2 commands before they exist; add them here once
-they do. Spec hyperparameters are starting points, and numbers marked *(est.)* / *(estimate)* are
-unmeasured.
+Method A milestone 1 is implemented in the `unlearn/` package (core method + online evaluation).
+Not yet implemented: the stress tests (spec 5.2), the comparison baselines (5.1), the ablations
+(Part II) and Method B. Spec hyperparameters are starting points, and numbers marked *(est.)* /
+*(estimate)* are unmeasured.
+
+```bash
+uv pip install -e ".[dev]"                                    # adds pytest
+python -m unlearn.labels --k 10 --draw 0                      # -> datasets/antmaze_bug/labels/k10_d0.json (--k B: all)
+python -m unlearn.train --parent rebrac_bug_s1 --k 10 --draw 0 --seed 0   # -> runs_unlearn/methodA_rebrac_bug_s1_k10_d0_s0/
+python -m unlearn.evaluate --run runs_unlearn/<run> [--watch]  # separate process; may run alongside training
+pytest tests/                                                 # firewall, labels, smoke run (needs data, parent, GPU)
+uvx ruff format unlearn tests && uvx ruff check unlearn tests
+```
+
+- `unlearn.labels` is the only training-side code that reads ground truth; `unlearn.evaluate` may
+  read it too (audit only, never fed back). `tests/test_no_leak.py` statically checks that the
+  training modules (`data`, `nets`, `config`, `method_a`, `train`) never name a ground-truth key.
+- A run dir holds `config.json`, `phase1_log.csv` and `train_log.csv` (Phase 2: λ, `Ĵ_C`, anchor
+  distance, watchdogs), `gates.json`, `phase1.pt` (`Q_C^{π_0}`, ruler, gate), `snap_<step>.pt` every
+  10k steps, `stop_rule.pt` (the stop rule's checkpoint, if it fired), `final.pt` (full state), and
+  `lineage.json`. Policy checkpoints load with `bugmaze.evaluate.load_policy`. Evaluation writes
+  `eval_log.csv`, `final_eval.json` and sweep maps. `*.pt` under `runs_unlearn/` is gitignored.
+- Exit status of `unlearn.train`: 0 completed, 3 gate check failed, 4 infeasible, 5 aborted. A gate
+  failure or infeasibility is a result to record, not an error to tune away.
+- `--ignore_gates true` exists for smoke tests only; it's recorded in the lineage.
+- Speed: on the shared lab machine (Titan V, contended CPU) training is kernel-launch bound: about
+  10–20 ms per Phase 1 step and 30–60 ms per Phase 2 step, several times the spec's estimates.
 
 Plans and method specs live in `notes/`, which is **gitignored** (local only; teammates may not have
 it, and the Notion copies are the shared version). Put new plans in `notes/plans/` and new method
@@ -110,13 +134,15 @@ behavior, not classifying the other `B − k` transitions.
 
 **Methods in one paragraph each.**
 - *A (Lagrangian cost-critic fine-tuning):* fine-tune the bug checkpoint in place.
-  - Phase 1: actor and `Q_R` frozen; train a new twin cost critic `Q_C` (max-twin, 16 labeled
-    samples oversampled per batch, cost 1 on labels) under a frozen copy π_0, then freeze it as
-    `Q_C^{π_0}`.
+  - Phase 1: actor and `Q_R` frozen; train a new twin cost critic `Q_C` (16 labeled samples
+    oversampled per batch, cost 1 on labels) under a frozen copy π_0, then freeze it as `Q_C^{π_0}`.
+    Twin aggregation: **min** in the cost target (so overestimates don't compound), **max** wherever
+    `Q_C` is used (actor loss, ruler, risk gate).
   - Phase 1b: compute the ruler `u` (its mean on the labels), the risk gate and the risk set, then
     run the gate checks.
   - Phase 2: train the actor on `Q_R − λ Q_C` with a scale-free constraint relative to `u`, a dual
-    update on λ, a gated BC term, and an anchor to π_0 outside the risk set. `Q_R` keeps training.
+    update on λ, plain (ungated) ReBRAC BC, and an anchor to π_0 outside the risk set. `Q_R`
+    keeps training. (Gating the BC term is ablation A10.)
   - The claim is behavioral: it suppresses the bug in the actor and doesn't erase it from `Q_R`.
 - *B (cost-filtered generative policy):* π_0 is frozen and used unchanged outside the flagged set
   of an in-sample SARSA cost critic (which bootstraps on `next_actions`). In flagged states, sample
@@ -135,11 +161,11 @@ side channels. Training code must never read:
 
 Training-safe keys are `observations`, `actions`, `rewards`, `next_observations`, `next_actions`
 and `terminals`. To enforce this:
-- Write a new `UnlearnDataset` with a key whitelist that raises on anything else.
-- Apply a fixed random permutation and remap the label indices. Make any validation split *after*
-  the permutation.
+- Load data only through `unlearn.data.UnlearnDataset`: a key whitelist that raises on anything
+  else, plus a fixed random row permutation with label indices remapped through it. Make any
+  validation split *after* the permutation.
 - **Don't reuse `bugmaze.dataset.OfflineDataset`**, because it reads `traj_has_bug`.
-- Add a shared `test_no_leak.py`.
+- `tests/test_no_leak.py` enforces this; extend it when adding training modules.
 
 Evaluation and audit code may read ground truth, but only in a separate process whose output never
 feeds back into training.

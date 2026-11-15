@@ -15,12 +15,15 @@ dependencies = [
     "pillow>=10",
 ]
 
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["bugmaze"]
+packages = ["bugmaze", "unlearn"]
 
 [tool.ruff]
 line-length = 130
@@ -31,4 +34,4 @@ select = ["E", "F", "I", "UP", "B"]
 ignore = ["E731", "B905"]  # small named lambdas for local helpers; zip(strict=) not required
 
 [tool.ruff.lint.isort]
-known-first-party = ["bugmaze"]
+known-first-party = ["bugmaze", "unlearn"]

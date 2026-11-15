@@ -21,3 +21,7 @@ release/
 
 # Local planning notes (plans and method specs)
 notes/
+
+# Stage 2 runs: checkpoints and stdout logs (the run-dir csv/json files stay trackable)
+runs_unlearn/**/*.pt
+runs_unlearn/logs/
