@@ -1,0 +1,81 @@
+{
+  "config": {
+    "parent": "rebrac_bug_s1",
+    "parent_dir": "runs_bugmaze",
+    "dataset": "datasets/antmaze_bug/mix.npz",
+    "k": "100",
+    "draw": 0,
+    "label_file": "",
+    "run_dir": "runs_unlearn",
+    "run_name": "methodA_rebrac_bug_s1_k100_d0_s0_excl_p1",
+    "seed": 0,
+    "perm_seed": 0,
+    "device": "cuda",
+    "deterministic": true,
+    "phase1_only": true,
+    "cost_init": "reward_trunk",
+    "diag_exclude_file": "datasets/antmaze_bug/labels/k100_d0_exclude_unlabelled_bug.json",
+    "ignore_gates": false,
+    "t1": 100000,
+    "t2_max": 200000,
+    "batch_size": 256,
+    "m": 16,
+    "extra_risk": 64,
+    "risk_extra_below": 0.1,
+    "holdout_frac": 0.2,
+    "gamma_c": 0.99,
+    "cost_lr": 0.0003,
+    "cost_warmup": 1000,
+    "kappa_g": 0.1,
+    "kappa": 0.05,
+    "lambda_init": 10.0,
+    "lambda_min": 0.01,
+    "lambda_max": 1000.0,
+    "eta_nu": 0.0001,
+    "actor_lr": 0.0001,
+    "alpha_actor": 0.003,
+    "beta": 0.1,
+    "critic_lr": 0.0003,
+    "grad_clip": 10.0,
+    "delta_max": 0.05,
+    "stop_window": 5000,
+    "stop_windows": 3,
+    "infeasible_steps": 20000,
+    "watchdog_every": 1000,
+    "max_rollbacks": 2,
+    "probe_size": 4096,
+    "track_every": 10000,
+    "track_size": 100000,
+    "snapshot_every": 10000,
+    "log_every": 1000,
+    "print_every": 10000
+  },
+  "git_commit": "6765714737c79857a2a89d95ace50093cde2fc66-dirty",
+  "parent": {
+    "path": "runs_bugmaze/rebrac_bug_s1/actor_1000000.pt",
+    "sha256": "2059051aef1b1f3a2ae8b0becf8e8edc851ab2fb2055e28939f57322933dbd61"
+  },
+  "dataset": {
+    "path": "datasets/antmaze_bug/mix.npz",
+    "sha256": "6d328777b6a44d195a2b28de6607f3232ab687091e7aecf95680f42d141f4f1e",
+    "perm_seed": 0
+  },
+  "labels": {
+    "path": "datasets/antmaze_bug/labels/k100_d0.json",
+    "sha256": "585e222ca131178719b17870af63f2aa3a1a80aa22f14ad004c6d6c60e62e026",
+    "k": 100,
+    "draw_seed": 0
+  },
+  "diag_exclude": {
+    "path": "datasets/antmaze_bug/labels/k100_d0_exclude_unlabelled_bug.json",
+    "sha256": "e198a0d2819491770f890f0d341458a3f4a041b27a15ab08e4f6f5bd8f921f1b",
+    "n": 8233
+  },
+  "phase1": {
+    "ruler": 4.111541271209717,
+    "risk_frac": 0.46311143040657043,
+    "gates_pass": false
+  },
+  "result": "phase1_only (gate_fail)",
+  "minutes_total": 36.60418272415797
+}

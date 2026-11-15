@@ -1,0 +1,86 @@
+{
+  "ruler": 76.25309753417969,
+  "ruler_holdout": 69.58914184570312,
+  "risk_frac_holdout_ruler": 0.9994240403175354,
+  "pu": null,
+  "risk_frac": 0.9993395209312439,
+  "kappa_g": 0.1,
+  "phase1_track": [
+    {
+      "step": 10000,
+      "ruler": 14.397651672363281,
+      "risk_frac": 1.0
+    },
+    {
+      "step": 20000,
+      "ruler": 22.355937957763672,
+      "risk_frac": 1.0
+    },
+    {
+      "step": 30000,
+      "ruler": 26.570331573486328,
+      "risk_frac": 1.0
+    },
+    {
+      "step": 40000,
+      "ruler": 30.156980514526367,
+      "risk_frac": 1.0
+    },
+    {
+      "step": 50000,
+      "ruler": 40.02375793457031,
+      "risk_frac": 1.0
+    },
+    {
+      "step": 60000,
+      "ruler": 51.1022834777832,
+      "risk_frac": 1.0
+    },
+    {
+      "step": 70000,
+      "ruler": 54.9040641784668,
+      "risk_frac": 0.9998700022697449
+    },
+    {
+      "step": 80000,
+      "ruler": 62.38343811035156,
+      "risk_frac": 0.9997699856758118
+    },
+    {
+      "step": 90000,
+      "ruler": 68.91800689697266,
+      "risk_frac": 0.9991999864578247
+    },
+    {
+      "step": 100000,
+      "ruler": 76.25309753417969,
+      "risk_frac": 0.9993099570274353
+    }
+  ],
+  "gates": {
+    "converged": {
+      "pass": false,
+      "ruler_change": 0.10643213533688592,
+      "risk_change": 0.00011005861799542513
+    },
+    "safe_region": {
+      "pass": false,
+      "frac_below_2pct_ruler": 5.3721443691756576e-05
+    },
+    "risk_set": {
+      "pass": false,
+      "frac": 0.9993395209312439
+    },
+    "heldout_auc": {
+      "pass": false,
+      "auc": 0.0435,
+      "n_hold": 2
+    },
+    "bounded": {
+      "pass": false,
+      "min": -0.7731083631515503,
+      "max": 118.59117126464844
+    }
+  },
+  "pass": false
+}
