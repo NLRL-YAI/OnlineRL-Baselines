@@ -25,9 +25,11 @@ class UnlearnConfig:
     device: str = "cuda"
     deterministic: bool = True
     phase1_only: bool = False  # stop after Phase 1b (cost-critic studies); no Phase 2
-    cost_init: str = "reward_trunk"  # Q_C hidden layers: "reward_trunk" (copy Q_R, spec 2.2) or "random" (ablation A9)
-    cost_target: str = "min"  # Q_C TD target from the twin target heads: "min" (spec 2.2), "mean", "indep", "sarsa"
-    cost_model: str = "label"  # immediate cost: "label" (c = 1[labelled], spec) or "pu" (Elkan-Noto classifier, unlearn.pu)
+    cost_init: str = "reward_trunk"  # see nets.cost_critic_from: reward_trunk (spec 2.2), random=zero_head, ...
+    cost_target: str = "indep"  # Q_C TD target: "indep" (each head its own target head), "min" (spec 2.2), "mean", "sarsa",
+    #                              "expectile" (in-sample, IQL-style: c + gamma V_C(s'), V_C a lower expectile of Q_C(s, a_data))
+    cost_v_tau: float = 0.7  # expectile target: V_C weight on Q_C < V_C (> 0.5 pulls V_C toward the safer data actions)
+    cost_model: str = "label"  # immediate cost: "label" (c = 1[labelled], spec) or "pu" (Elkan-Noto classifier, opt-in)
     pu_steps: int = 5_000
     pu_hidden: int = 32
     pu_layers: int = 1
@@ -36,6 +38,7 @@ class UnlearnConfig:
     pu_batch: int = 256  # labelled rows per step (and as many uniform rows)
     pu_noise: float = 1.0  # Gaussian input noise, standardised units
     pu_eval_every: int = 100  # held-out checkpoint selection (needs >= 5 held-out labels)
+    qc_nonneg: bool = True  # clamp Q_C at 0 in its TD target, the actor loss and J_hat (c >= 0; Phase 2 runs drove J_hat < 0)
     cost_loss: str = "mse"  # "mse" or "expectile" (asymmetric: weight cost_tau when the target is above Q)
     cost_tau: float = 0.99
     diag_exclude_file: str = ""  # DIAGNOSTIC only: rows (original idx) dropped from the cost loss (audit_cost exclude)
@@ -54,6 +57,11 @@ class UnlearnConfig:
     cost_lr: float = 3e-4
     cost_warmup: int = 1_000
     # gates and constraint
+    ruler_source: str = "holdout"  # "holdout": mean Q_C on the unseen labels (fit labels memorise; falls back to "fit"
+    #                                 when there are none, k < 10); "fit": mean on L_fit (spec 2.3)
+    heldout_auc_min: float = 0.0  # held-out AUC gate threshold; 0 records the AUC only (spec: 0.9; true Q_C scores 0.87)
+    bounded_min: float = -2.0  # bounded gate floor (spec: -0.5)
+    conv_tol: float = 0.05  # converged gate: relative change of ruler and risk fraction over the last tracking interval
     kappa_g: float = 0.1
     kappa: float = 0.05
     lambda_init: float = 10.0
@@ -73,6 +81,7 @@ class UnlearnConfig:
     infeasible_steps: int = 20_000  # J_C > kappa with lambda at its cap this long -> infeasible
     watchdog_every: int = 1_000
     max_rollbacks: int = 2
+    w2_rise: float = 0.10  # W2 fires when the probe median Q_C/ruler rises this far above pi_0's (spec: absolute 0.10)
     probe_size: int = 4_096  # fixed random states for W2 / drift statistics
     # Phase 1 tracking (convergence gate)
     track_every: int = 10_000
@@ -83,14 +92,16 @@ class UnlearnConfig:
     print_every: int = 10_000
 
     def __post_init__(self):
-        if self.cost_init not in ("reward_trunk", "random"):
-            raise ValueError(f"cost_init must be reward_trunk or random, got {self.cost_init}")
-        if self.cost_target not in ("min", "mean", "indep", "sarsa"):
-            raise ValueError(f"cost_target must be min, mean, indep or sarsa, got {self.cost_target}")
+        if self.cost_init not in ("reward_trunk", "random", "zero_head", "random_full", "frozen_trunk"):
+            raise ValueError(f"cost_init {self.cost_init!r} is not one of nets.COST_INITS")
+        if self.cost_target not in ("min", "mean", "indep", "sarsa", "expectile"):
+            raise ValueError(f"cost_target must be min, mean, indep, sarsa or expectile, got {self.cost_target}")
         if self.cost_model not in ("label", "pu"):
             raise ValueError(f"cost_model must be label or pu, got {self.cost_model}")
         if self.cost_loss not in ("mse", "expectile"):
             raise ValueError(f"cost_loss must be mse or expectile, got {self.cost_loss}")
+        if self.ruler_source not in ("holdout", "fit"):
+            raise ValueError(f"ruler_source must be holdout or fit, got {self.ruler_source}")
         if self.kappa >= self.kappa_g:
             raise ValueError(f"kappa ({self.kappa}) must be below kappa_g ({self.kappa_g}) (spec 2.5)")
 

@@ -24,7 +24,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from bugmaze.rebrac import CsvLogger
+from bugmaze.rebrac import CsvLogger, mlp
 
 from .config import UnlearnConfig
 from .data import UnlearnDataset
@@ -106,7 +106,7 @@ class MethodA:
         self.lineage["labels"] = {"path": str(lpath), "sha256": sha256(lpath), "k": lab["k"], "draw_seed": lab["draw_seed"]}
         L = data.remap(lab["idx"])
         k = len(L)
-        if k >= 10:  # hold-out labels, used only by the AUC gate
+        if k >= 10:  # hold-out labels: unseen in Phase 1; set the ruler (ruler_source) and the AUC gate
             perm = torch.randperm(k, device=dev, generator=self.gen)
             n_hold = round(cfg.holdout_frac * k)
             self.L_fit, self.L_hold = L[perm[n_hold:]], L[perm[:n_hold]]
@@ -141,7 +141,11 @@ class MethodA:
         self.qc = cost_critic_from(p.critic, cfg.cost_init)
         self.qc_t = freeze(self.qc)
         fused = dev.type == "cuda"
-        self.qc_opt = torch.optim.Adam(self.qc.parameters(), lr=cfg.cost_lr, fused=fused)
+        self.qc_opt = torch.optim.Adam([q for q in self.qc.parameters() if q.requires_grad], lr=cfg.cost_lr, fused=fused)
+        self.vc, self.vc_opt = None, None
+        if cfg.cost_target == "expectile":  # state value of the cost, in-sample (never queries a policy action)
+            self.vc = mlp(p.obs_dim, self.rc.hidden, self.rc.critic_layers, 1, layer_norm=True).to(dev)
+            self.vc_opt = torch.optim.Adam(self.vc.parameters(), lr=cfg.cost_lr, fused=fused)
         self.theta0 = flat_params(self.actor)
         self.probe = torch.randint(0, data.n, (cfg.probe_size,), device=dev, generator=self.gen)
         self.track = torch.randint(0, data.n, (min(cfg.track_size, data.n),), device=dev, generator=self.gen)
@@ -172,17 +176,28 @@ class MethodA:
         return s, a, s2, d, c, w, a2
 
     def cost_step(self, policy_t, u) -> torch.Tensor:
-        """One TD step of Q_C under `policy_t`. Target from the twin target heads: "min" (spec 2.2),
-        "mean", or "indep" (each head bootstraps from its own target head). "sarsa": indep heads at the
-        dataset's next action, no target noise (in-sample; estimates the data's cost-to-go, not pi_0's)."""
+        """One TD step of Q_C under `policy_t`. Target from the twin target heads: "indep" (default; each
+        head bootstraps from its own target head), "min" (spec 2.2) or "mean". The min target's per-backup
+        downward bias (~E|q1 - q2| / 2) accumulates to about -1 over the 1/(1 - gamma) horizon. "sarsa": indep heads at the
+        dataset's next action, no target noise (in-sample; estimates the data's cost-to-go, not pi_0's). "expectile":
+        IQL-style, in-sample; target c + gamma V_C(s'), V_C(s) the lower cost_v_tau-expectile of the target Q_C (head
+        mean) over the data actions at s, i.e. the cost-to-go of choosing the safer data-supported actions."""
         cfg = self.cfg
         s, a, s2, d, c, w, a2_data = self.cost_batch(u)
+        if cfg.cost_target == "expectile":
+            with torch.no_grad():
+                qt = 0.5 * sum(self.qc_t(s, a))
+            dv = qt - self.vc(s).squeeze(-1)  # weight cost_v_tau where Q < V: V tracks the low-cost data actions
+            lv = torch.where(dv < 0, cfg.cost_v_tau, 1.0 - cfg.cost_v_tau) * dv**2
+            grad_step(self.vc_opt, lv.mean() if w is None else (w * lv).sum() / w.sum(), self.vc.parameters(), cfg.grad_clip)
         with torch.no_grad():
-            if cfg.cost_target == "sarsa":
-                a2 = a2_data
+            if cfg.cost_target == "expectile":
+                t1 = t2 = self.vc(s2).squeeze(-1)
             else:
-                a2 = (policy_t(s2) + self.noise_like(a)).clamp(-1.0, 1.0)
-            t1, t2 = self.qc_t(s2, a2)
+                a2 = a2_data if cfg.cost_target == "sarsa" else (policy_t(s2) + self.noise_like(a)).clamp(-1.0, 1.0)
+                t1, t2 = self.qc_t(s2, a2)
+            if cfg.qc_nonneg:  # c >= 0, so Q_C >= 0: negative bootstraps are pure error and propagate backward
+                t1, t2 = t1.clamp_min(0.0), t2.clamp_min(0.0)
             if cfg.cost_target == "min":
                 t1 = t2 = torch.min(t1, t2)
             elif cfg.cost_target == "mean":
@@ -232,9 +247,15 @@ class MethodA:
                     raise FloatingPointError(f"Phase 1 cost-critic loss is {loss} at step {step}")
                 self.log1.log({"phase": 1, "step": step, "time": time.time() - self.t_start, "qc_loss": loss})
             if step % cfg.track_every == 0 or step == cfg.t1:
-                u_, frac, _ = self.ruler_and_risk(self.qc, self.L_fit, self.track)
+                u_, frac, _ = self.ruler_and_risk(self.qc, self.ruler_rows(), self.track)
                 self.p1_track.append({"step": step, "ruler": u_, "risk_frac": frac})
                 print(f"[phase 1] step {step:>7d} ({time.time() - t0:5.0f}s) ruler {u_:.4f} risk set {frac:.3f}", flush=True)
+
+    def ruler_rows(self) -> torch.Tensor:
+        """Labels that set the ruler: the unseen L_hold (the fit labels' values are memorised spikes, several times
+        the f-scaled values around them at low k) unless ruler_source == "fit" or there are none."""
+        use_hold = self.cfg.ruler_source == "holdout" and len(self.L_hold) > 0
+        return self.L_hold if use_hold else self.L_fit
 
     @torch.no_grad()
     def q_rows(self, rows: torch.Tensor) -> torch.Tensor:
@@ -247,7 +268,8 @@ class MethodA:
     def phase1b(self) -> bool:
         cfg, d = self.cfg, self.data
         self.qc_pi0 = freeze(self.qc)
-        ruler, _, q_all = self.ruler_and_risk(self.qc_pi0, self.L_fit, torch.arange(d.n, device=self.device))
+        ruler_from = "holdout" if self.ruler_rows() is self.L_hold else "fit"
+        ruler, _, q_all = self.ruler_and_risk(self.qc_pi0, self.ruler_rows(), torch.arange(d.n, device=self.device))
         self.ruler = ruler
         self.g = (q_all / (cfg.kappa_g * ruler)).clamp(0.0, 1.0) if ruler > 0 else torch.zeros_like(q_all)
         self.risk = self.g >= 1.0
@@ -260,7 +282,11 @@ class MethodA:
             a, b = tr[-2], tr[-1]
             rel = lambda x, y: abs(y - x) / max(abs(x), 1e-8)  # noqa: E731
             conv_r, conv_s = rel(a["ruler"], b["ruler"]), rel(a["risk_frac"], b["risk_frac"])
-            gates["converged"] = {"pass": conv_r < 0.05 and conv_s < 0.05, "ruler_change": conv_r, "risk_change": conv_s}
+            gates["converged"] = {
+                "pass": conv_r < cfg.conv_tol and conv_s < cfg.conv_tol,
+                "ruler_change": conv_r,
+                "risk_change": conv_s,
+            }
         else:
             gates["converged"] = {"pass": False, "reason": "fewer than 2 tracking points; raise t1"}
         safe = float((q_all < 0.02 * ruler).float().mean()) if ruler > 0 else 0.0
@@ -271,16 +297,19 @@ class MethodA:
             neg = batched(lambda s, a: max2(self.qc_pi0(s, a)), d.obs[neg_rows], d.actions[neg_rows]).cpu().numpy()
             pos = batched(lambda s, a: max2(self.qc_pi0(s, a)), d.obs[self.L_hold], d.actions[self.L_hold]).cpu().numpy()
             a_ = auc(pos, neg)
-            gates["heldout_auc"] = {"pass": a_ >= 0.9, "auc": a_, "n_hold": len(pos)}
+            gates["heldout_auc"] = {"pass": a_ >= cfg.heldout_auc_min, "auc": a_, "min": cfg.heldout_auc_min, "n_hold": len(pos)}
         else:
             gates["heldout_auc"] = {"pass": True, "skipped": "k < 10"}
         lo, hi = min(float(q_all.min()), float(q_lab.min())), max(float(q_all.max()), float(q_lab.max()))
-        gates["bounded"] = {"pass": lo >= -0.5 and hi <= 100.0, "min": lo, "max": hi}  # -0.5: W3's tolerance
+        gates["bounded"] = {"pass": lo >= cfg.bounded_min and hi <= 100.0, "min": lo, "max": hi, "floor": cfg.bounded_min}
         ok = all(v["pass"] for v in gates.values()) and ruler > 0
         ruler_hold = float(q_lab_hold.mean()) if (q_lab_hold := self.q_rows(self.L_hold)).numel() else float("nan")
+        ruler_fit = float(self.q_rows(self.L_fit).mean())
         summary = {
-            "ruler": ruler,
-            "ruler_holdout": ruler_hold,  # mean Q_C over unseen labels (not used by the gate; diagnostic)
+            "ruler": ruler,  # the one the gate, the risk set and Phase 2 use
+            "ruler_source": ruler_from,
+            "ruler_fit": ruler_fit,
+            "ruler_holdout": ruler_hold,
             "risk_frac_holdout_ruler": float((q_all >= cfg.kappa_g * ruler_hold).float().mean()) if ruler_hold > 0 else 0.0,
             "pu": self.pu_info,
             "risk_frac": risk_frac,
@@ -290,10 +319,12 @@ class MethodA:
             "pass": ok,
         }
         (self.run_dir / "gates.json").write_text(json.dumps(summary, indent=2))
-        torch.save({"qc_pi0": self.qc_pi0.state_dict(), "ruler": ruler, "ruler_holdout": ruler_hold, "g": self.g.cpu(),
-                    "perm_seed": cfg.perm_seed, "pu": None if self.pu_model is None else self.pu_model.state_dict()},
+        torch.save({"qc_pi0": self.qc_pi0.state_dict(), "ruler": ruler, "ruler_source": ruler_from, "ruler_fit": ruler_fit,
+                    "ruler_holdout": ruler_hold, "g": self.g.cpu(),
+                    "perm_seed": cfg.perm_seed, "pu": None if self.pu_model is None else self.pu_model.state_dict(),
+                    "vc": None if self.vc is None else self.vc.state_dict()},
                    self.run_dir / "phase1.pt")  # fmt: skip
-        self.lineage["phase1"] = {"ruler": ruler, "risk_frac": risk_frac, "gates_pass": ok}
+        self.lineage["phase1"] = {"ruler": ruler, "ruler_source": ruler_from, "risk_frac": risk_frac, "gates_pass": ok}
         print(f"[phase 1b] ruler {ruler:.4f} | risk set {risk_frac:.3f} | gates {'PASS' if ok else 'FAIL'}: "
               + ", ".join(f"{k}={'ok' if v['pass'] else 'FAIL'}" for k, v in gates.items()), flush=True)  # fmt: skip
         return ok
@@ -329,6 +360,10 @@ class MethodA:
         risk_rows = torch.nonzero(self.risk).squeeze(-1)
         extra = cfg.extra_risk if float(self.risk.float().mean()) < cfg.risk_extra_below and len(risk_rows) > 0 else 0
         g, ruler = self.g, self.ruler
+        with torch.no_grad():  # W2 baseline: pi_0's own median cost on the probe states (it is above 0.1 ruler whenever
+            ps0 = d.obs[self.probe]  # most states lead to the bug under pi_0, i.e. the risk set covers over half of D)
+            w2_base = max2(self.qc_pi0(ps0, self.pi0(ps0))).median().item() / ruler
+        self.lineage["w2_base"] = w2_base
 
         last_good = capture(self.modules(), self.opts(), {"nu": nu.item()})
         rollbacks, qr_loss_ref = 0, None
@@ -364,6 +399,8 @@ class MethodA:
                     ia, sa, aa = torch.cat([i, er]), torch.cat([s, d.obs[er]]), torch.cat([a, d.actions[er]])
                 pi = self.actor(sa)
                 q_r, q_c = min2(self.qr(sa, pi)), max2(self.qc(sa, pi))
+                if cfg.qc_nonneg:  # no reward for driving Q_C below 0 (critic exploitation, F2); also floors J_hat at 0
+                    q_c = q_c.clamp_min(0.0)
                 z = q_r.abs().mean().detach() if rc.normalize_q else torch.ones((), device=dev)
                 lam = nu.exp()
                 with torch.no_grad():
@@ -413,7 +450,7 @@ class MethodA:
                     fired.append("W3_value_range")
                 if qr_loss_ref and row["qr_loss"] > 10.0 * qr_loss_ref:
                     fired.append("W3_critic_loss")
-                if probe_qc_med > 0.10:
+                if probe_qc_med > w2_base + cfg.w2_rise:
                     fired.append("W2_cost_inflation")
                 if row["abs_pi"] > 0.95:
                     fired.append("W4_saturated")

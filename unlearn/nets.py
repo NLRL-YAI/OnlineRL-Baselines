@@ -77,11 +77,19 @@ def set_lr(opt: torch.optim.Optimizer, lr: float):
         g["lr"] = lr
 
 
+COST_INITS = ("reward_trunk", "random", "zero_head", "random_full", "frozen_trunk")
+
+
 def cost_critic_from(reward_critic: Critic, init: str = "reward_trunk") -> Critic:
-    """Twin cost critic with its output layer zeroed, so Q_C = 0 at the start. Hidden layers are copied from Q_R
-    ("reward_trunk", spec 2.2) or freshly initialised as in stage 1 ("random", ablation A9)."""
+    """Twin cost critic with the shape of Q_R.
+    "reward_trunk": hidden layers copied from Q_R, output layer zeroed, so Q_C = 0 at the start (spec 2.2)
+    "random" / "zero_head": hidden layers freshly initialised as in stage 1, output layer zeroed (ablation A9)
+    "random_full": every layer freshly initialised, output included (Q_C starts at random nonzero values)
+    "frozen_trunk": as "reward_trunk", but only the output layer is trainable (a linear probe on Q_R's features)"""
+    if init not in COST_INITS:
+        raise ValueError(init)
     qc = copy.deepcopy(reward_critic)
-    if init == "random":
+    if init in ("random", "zero_head", "random_full"):
         for head in (qc.q1, qc.q2):
             for m in head:
                 if isinstance(m, nn.Linear):
@@ -90,16 +98,19 @@ def cost_critic_from(reward_critic: Critic, init: str = "reward_trunk") -> Criti
                 elif isinstance(m, nn.LayerNorm):
                     nn.init.ones_(m.weight)
                     nn.init.zeros_(m.bias)
-    elif init != "reward_trunk":
-        raise ValueError(init)
-    with torch.no_grad():
-        for head in (qc.q1, qc.q2):
-            out = head[-1]
-            assert isinstance(out, nn.Linear) and out.out_features == 1
-            out.weight.zero_()
-            out.bias.zero_()
+    if init != "random_full":
+        with torch.no_grad():
+            for head in (qc.q1, qc.q2):
+                out = head[-1]
+                assert isinstance(out, nn.Linear) and out.out_features == 1
+                out.weight.zero_()
+                out.bias.zero_()
     for p in qc.parameters():
-        p.requires_grad_(True)
+        p.requires_grad_(init != "frozen_trunk")
+    if init == "frozen_trunk":
+        for head in (qc.q1, qc.q2):
+            for p in head[-1].parameters():
+                p.requires_grad_(True)
     return qc
 
 
