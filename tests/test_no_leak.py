@@ -12,7 +12,17 @@ from bugmaze.paths import MIX
 from unlearn.data import WHITELIST, LeakError, UnlearnDataset, load_whitelisted
 
 FORBIDDEN = ("warp", "in_wall", "next_in_wall", "is_bug", "bug_id", "traj_id", "t", "traj_has_bug", "source", "timeouts")
-TRAINING_MODULES = ("data.py", "nets.py", "config.py", "method_a.py", "train.py", "pu.py")
+TRAINING_MODULES = (
+    "data.py",
+    "nets.py",
+    "config.py",
+    "method_a.py",
+    "train.py",
+    "pu.py",
+    "absorb.py",
+    "diffusion.py",
+    "select_policy.py",
+)
 pytestmark = pytest.mark.skipif(not MIX.exists(), reason="mix.npz not downloaded (python scripts/download.py)")
 
 

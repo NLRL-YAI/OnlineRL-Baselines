@@ -1,0 +1,32 @@
+{
+ "args": {
+  "mode": "nn1",
+  "qc": "",
+  "lam": 3.0,
+  "K": 32,
+  "episodes": 50,
+  "name": "nn1"
+ },
+ "open": {
+  "success": 0.36,
+  "return_mean": -765.9,
+  "return_std": 330.6716347073029,
+  "ep_len_mean": 766.26,
+  "bug_usage": 0.36,
+  "success_no_bug": 0.0,
+  "wall_depth": 0.4016317642560759,
+  "stall_rate": 0.48,
+  "path_len_on_foot": NaN
+ },
+ "patched": {
+  "success": 0.0,
+  "return_mean": -1000.0,
+  "return_std": 0.0,
+  "ep_len_mean": 1000.0,
+  "bug_usage": 0.0,
+  "success_no_bug": 0.0,
+  "wall_depth": 0.0,
+  "stall_rate": 0.74,
+  "path_len_on_foot": NaN
+ }
+}

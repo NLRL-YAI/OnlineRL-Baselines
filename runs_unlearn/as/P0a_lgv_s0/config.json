@@ -1,0 +1,14 @@
+{
+ "critic": "rebrac:runs_unlearn/goal/D1_cutbc_s0",
+ "diffusion": "runs_unlearn/e8/bc_diff.pt",
+ "agg": "min",
+ "N": 32,
+ "K": 10,
+ "step_q": 0.05,
+ "noise": 0.5,
+ "mode": "argmax",
+ "episodes": 200,
+ "sweep_eps": 10,
+ "seed": 0,
+ "out": "runs_unlearn/as/P0a_lgv_s0"
+}

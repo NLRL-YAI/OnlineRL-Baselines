@@ -1,0 +1,7 @@
+ckpt,step,open_success,open_return_mean,open_return_std,open_ep_len_mean,open_bug_usage,open_success_no_bug,open_wall_depth,open_stall_rate,open_path_len_on_foot,patched_success,patched_return_mean,patched_return_std,patched_ep_len_mean,patched_bug_usage,patched_success_no_bug,patched_wall_depth,patched_stall_rate,patched_path_len_on_foot,J_hat,flags,eval_time
+snap_0010000.pt,10000,0.0,-1000.0,0.0,1000.0,0.0,0.0,0.0,0.65,nan,0.0,-1000.0,0.0,1000.0,0.0,0.0,0.0,0.65,nan,0.4617088735103607,F1_stall,29.52574133872986
+snap_0020000.pt,20000,0.0,-1000.0,0.0,1000.0,0.0,0.0,0.0,0.15,nan,0.0,-1000.0,0.0,1000.0,0.0,0.0,0.0,0.15,nan,0.4674791991710663,F1_stall,28.05128765106201
+snap_0030000.pt,30000,0.0,-1000.0,0.0,1000.0,0.0,0.0,0.0,0.15,nan,0.0,-1000.0,0.0,1000.0,0.0,0.0,0.0,0.15,nan,0.46970757842063904,F1_stall,28.640056133270264
+snap_0040000.pt,40000,0.0,-1000.0,0.0,1000.0,0.0,0.0,0.0,0.15,nan,0.0,-1000.0,0.0,1000.0,0.0,0.0,0.0,0.15,nan,0.47550928592681885,F1_stall,28.405425786972046
+snap_0050000.pt,50000,0.0,-1000.0,0.0,1000.0,0.0,0.0,0.0,0.35,nan,0.0,-1000.0,0.0,1000.0,0.0,0.0,0.0,0.35,nan,0.4834258258342743,F1_stall,28.47102117538452
+snap_0060000.pt,60000,0.0,-1000.0,0.0,1000.0,0.0,0.0,0.0,0.2,nan,0.0,-1000.0,0.0,1000.0,0.0,0.0,0.0,0.2,nan,0.4862951636314392,F1_stall,28.45809531211853

@@ -1,0 +1,97 @@
+[
+ {
+  "arm": "D1_cutbc",
+  "n_runs": 3,
+  "n_eval": 3,
+  "status": [
+   "t2_max",
+   "t2_max",
+   "t2_max"
+  ],
+  "succ": "0.967 \u00b1 0.002",
+  "legal": "0.965 \u00b1 0.000",
+  "bug": "0.002 \u00b1 0.002",
+  "patched": "0.967 \u00b1 0.002",
+  "warp_sweep": "0.005 \u00b1 0.004",
+  "onfoot_sweep": "0.974 \u00b1 0.006",
+  "legal_onfoot": "0.868 \u00b1 0.031",
+  "final_lambda": "10.000 \u00b1 0.000",
+  "frac_cut": "0.007 \u00b1 0.000"
+ },
+ {
+  "arm": "D2_dose5",
+  "n_runs": 3,
+  "n_eval": 3,
+  "status": [
+   "t2_max",
+   "t2_max",
+   "t2_max"
+  ],
+  "succ": "0.975 \u00b1 0.015",
+  "legal": "0.973 \u00b1 0.017",
+  "bug": "0.002 \u00b1 0.002",
+  "patched": "0.975 \u00b1 0.015",
+  "warp_sweep": "0.014 \u00b1 0.004",
+  "onfoot_sweep": "0.952 \u00b1 0.006",
+  "legal_onfoot": "0.897 \u00b1 0.046",
+  "final_lambda": "10.000 \u00b1 0.000",
+  "frac_cut": "0.007 \u00b1 0.000"
+ },
+ {
+  "arm": "D2_dose20",
+  "n_runs": 3,
+  "n_eval": 3,
+  "status": [
+   "t2_max",
+   "t2_max",
+   "t2_max"
+  ],
+  "succ": "0.975 \u00b1 0.007",
+  "legal": "0.975 \u00b1 0.007",
+  "bug": "0.000 \u00b1 0.000",
+  "patched": "0.977 \u00b1 0.005",
+  "warp_sweep": "0.018 \u00b1 0.013",
+  "onfoot_sweep": "0.942 \u00b1 0.030",
+  "legal_onfoot": "0.886 \u00b1 0.007",
+  "final_lambda": "10.000 \u00b1 0.000",
+  "frac_cut": "0.007 \u00b1 0.000"
+ },
+ {
+  "arm": "D2_randfp",
+  "n_runs": 3,
+  "n_eval": 3,
+  "status": [
+   "t2_max",
+   "t2_max",
+   "t2_max"
+  ],
+  "succ": "0.360 \u00b1 0.262",
+  "legal": "0.020 \u00b1 0.007",
+  "bug": "0.343 \u00b1 0.260",
+  "patched": "0.098 \u00b1 0.059",
+  "warp_sweep": "0.227 \u00b1 0.182",
+  "onfoot_sweep": "0.341 \u00b1 0.007",
+  "legal_onfoot": "0.819 \u00b1 0.070",
+  "final_lambda": "10.000 \u00b1 0.000",
+  "frac_cut": "0.023 \u00b1 0.000"
+ },
+ {
+  "arm": "D2_implied_kB",
+  "n_runs": 3,
+  "n_eval": 3,
+  "status": [
+   "t2_max",
+   "t2_max",
+   "t2_max"
+  ],
+  "succ": "0.347 \u00b1 0.195",
+  "legal": "0.008 \u00b1 0.006",
+  "bug": "0.432 \u00b1 0.139",
+  "patched": "0.015 \u00b1 0.011",
+  "warp_sweep": "0.247 \u00b1 0.037",
+  "onfoot_sweep": "0.012 \u00b1 0.008",
+  "legal_onfoot": "0.108 \u00b1 0.021",
+  "final_lambda": "10.000 \u00b1 0.000",
+  "frac_cut": "0.023 \u00b1 0.002"
+ }
+]

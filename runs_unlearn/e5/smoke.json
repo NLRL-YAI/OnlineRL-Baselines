@@ -1,0 +1,32 @@
+{
+ "args": {
+  "mode": "nn1",
+  "qc": "",
+  "lam": 3.0,
+  "K": 32,
+  "episodes": 4,
+  "name": "smoke"
+ },
+ "open": {
+  "success": 0.25,
+  "return_mean": -918.5,
+  "return_std": 141.1621408168635,
+  "ep_len_mean": 918.75,
+  "bug_usage": 0.25,
+  "success_no_bug": 0.0,
+  "wall_depth": 0.29494279131675505,
+  "stall_rate": 0.75,
+  "path_len_on_foot": NaN
+ },
+ "patched": {
+  "success": 0.0,
+  "return_mean": -1000.0,
+  "return_std": 0.0,
+  "ep_len_mean": 1000.0,
+  "bug_usage": 0.0,
+  "success_no_bug": 0.0,
+  "wall_depth": 0.0,
+  "stall_rate": 0.75,
+  "path_len_on_foot": NaN
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "args": {
+  "mode": "select",
+  "qc": "methodA_rebrac_bug_s1_k1000_d0_s0_pusarsa_e3",
+  "lam": 30.0,
+  "K": 32,
+  "episodes": 50,
+  "name": "sel_k1000pu_lam30"
+ },
+ "open": {
+  "success": 0.0,
+  "return_mean": -1000.0,
+  "return_std": 0.0,
+  "ep_len_mean": 1000.0,
+  "bug_usage": 0.0,
+  "success_no_bug": 0.0,
+  "wall_depth": 0.0,
+  "stall_rate": 1.0,
+  "path_len_on_foot": NaN
+ },
+ "patched": {
+  "success": 0.0,
+  "return_mean": -1000.0,
+  "return_std": 0.0,
+  "ep_len_mean": 1000.0,
+  "bug_usage": 0.0,
+  "success_no_bug": 0.0,
+  "wall_depth": 0.0,
+  "stall_rate": 1.0,
+  "path_len_on_foot": NaN
+ }
+}

@@ -1,0 +1,433 @@
+{
+  "config": {
+    "parent": "rebrac_bug_s1",
+    "parent_dir": "runs_bugmaze",
+    "dataset": "datasets/antmaze_bug/mix.npz",
+    "k": "1000",
+    "draw": 0,
+    "label_file": "",
+    "run_dir": "/home/ksj/Desktop/UNRL/OnlineRL-Baselines/runs_unlearn/goal",
+    "run_name": "B_sarsacopy_k1000_s0",
+    "seed": 0,
+    "perm_seed": 0,
+    "device": "cuda",
+    "deterministic": true,
+    "phase1_only": false,
+    "cost_init": "reward_trunk",
+    "cost_target": "sarsa",
+    "cost_v_tau": 0.7,
+    "cost_model": "label",
+    "pu_steps": 5000,
+    "pu_hidden": 32,
+    "pu_layers": 1,
+    "pu_lr": 0.001,
+    "pu_wd": 0.1,
+    "pu_batch": 256,
+    "pu_noise": 1.0,
+    "pu_eval_every": 100,
+    "qr_cut": "none",
+    "cut_kappa": 0.5,
+    "cut_floor": -100.0,
+    "cut_bc": false,
+    "phase2_cost": "lagrangian",
+    "qc_nonneg": true,
+    "cost_loss": "mse",
+    "cost_tau": 0.99,
+    "diag_exclude_file": "",
+    "ignore_gates": false,
+    "t1": 100000,
+    "t2_max": 200000,
+    "batch_size": 256,
+    "m": 16,
+    "extra_risk": 64,
+    "risk_extra_below": 0.1,
+    "holdout_frac": 0.2,
+    "gamma_c": 0.99,
+    "cost_lr": 0.0003,
+    "cost_warmup": 1000,
+    "ruler_source": "holdout",
+    "heldout_auc_min": 0.0,
+    "bounded_min": -2.0,
+    "conv_tol": 0.05,
+    "kappa_g": 0.1,
+    "kappa": 0.05,
+    "lambda_init": 10.0,
+    "lambda_min": 0.01,
+    "lambda_max": 1000.0,
+    "eta_nu": 0.0001,
+    "actor_lr": 0.0001,
+    "alpha_actor": 0.003,
+    "beta": 0.1,
+    "critic_lr": 0.0003,
+    "grad_clip": 10.0,
+    "delta_max": 0.05,
+    "stop_window": 5000,
+    "stop_windows": 3,
+    "infeasible_steps": 20000,
+    "watchdog_every": 1000,
+    "max_rollbacks": 2,
+    "w2_rise": 0.1,
+    "probe_size": 4096,
+    "track_every": 10000,
+    "track_size": 100000,
+    "snapshot_every": 10000,
+    "log_every": 1000,
+    "print_every": 10000
+  },
+  "git_commit": "b8fa20fdd72025e5bab45585c385b8dcbfa0e2ab-dirty",
+  "parent": {
+    "path": "runs_bugmaze/rebrac_bug_s1/actor_1000000.pt",
+    "sha256": "2059051aef1b1f3a2ae8b0becf8e8edc851ab2fb2055e28939f57322933dbd61"
+  },
+  "dataset": {
+    "path": "datasets/antmaze_bug/mix.npz",
+    "sha256": "6d328777b6a44d195a2b28de6607f3232ab687091e7aecf95680f42d141f4f1e",
+    "perm_seed": 0
+  },
+  "labels": {
+    "path": "datasets/antmaze_bug/labels/k1000_d0.json",
+    "sha256": "e6617210a34528cbac09a09f09fa28146ca8f505d32faf5d7060e87f51025a78",
+    "k": 1000,
+    "draw_seed": 0
+  },
+  "phase1": {
+    "ruler": 0.710525631904602,
+    "ruler_source": "holdout",
+    "risk_frac": 0.32054176926612854,
+    "gates_pass": true
+  },
+  "w2_base": 0.03319839810221631,
+  "phase2": {
+    "status": 0,
+    "stop_reason": "t2_max",
+    "final_step": 200000,
+    "stop_rule_step": null,
+    "rollbacks": 0,
+    "final_lambda": 48.44539920191358,
+    "windows": [
+      {
+        "step": 5000,
+        "J": 0.3571407854557037,
+        "anchor": 0.011885442957282066,
+        "lambda": 10.798118235387955,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 10000,
+        "J": 0.28695120811462405,
+        "anchor": 0.013759699836373328,
+        "lambda": 11.457066933509868,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 15000,
+        "J": 0.2763574182987213,
+        "anchor": 0.014726425893604756,
+        "lambda": 12.124154231995218,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 20000,
+        "J": 0.2729835629463196,
+        "anchor": 0.016549986600875855,
+        "lambda": 12.819301408648263,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 25000,
+        "J": 0.26796292066574096,
+        "anchor": 0.018480727449059486,
+        "lambda": 13.537201609102684,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 30000,
+        "J": 0.25438434183597564,
+        "anchor": 0.02002436891198158,
+        "lambda": 14.246843694229304,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 35000,
+        "J": 0.24146124124526977,
+        "anchor": 0.022316744551062584,
+        "lambda": 14.945436808226573,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 40000,
+        "J": 0.2343835711479187,
+        "anchor": 0.023559053242206574,
+        "lambda": 15.650450857259878,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 45000,
+        "J": 0.23010652959346772,
+        "anchor": 0.024752743914723395,
+        "lambda": 16.371218696973266,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 50000,
+        "J": 0.23003193736076355,
+        "anchor": 0.025559425354003906,
+        "lambda": 17.124870567529978,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 55000,
+        "J": 0.2282101422548294,
+        "anchor": 0.026606326177716254,
+        "lambda": 17.905087090615616,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 60000,
+        "J": 0.22362996637821198,
+        "anchor": 0.027110496535897255,
+        "lambda": 18.699349392012067,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 65000,
+        "J": 0.21986299753189087,
+        "anchor": 0.027008218318223955,
+        "lambda": 19.510508660707202,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 70000,
+        "J": 0.21544200778007508,
+        "anchor": 0.026708030700683595,
+        "lambda": 20.33443006560841,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 75000,
+        "J": 0.2111079454421997,
+        "anchor": 0.026476078480482102,
+        "lambda": 21.170137121166444,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 80000,
+        "J": 0.209708109498024,
+        "anchor": 0.026595984399318696,
+        "lambda": 22.03245647921553,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 85000,
+        "J": 0.2072063058614731,
+        "anchor": 0.026867132633924484,
+        "lambda": 22.915712816925044,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 90000,
+        "J": 0.20357655584812165,
+        "anchor": 0.02783673405647278,
+        "lambda": 23.812782607029835,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 95000,
+        "J": 0.19936447143554686,
+        "anchor": 0.029852552711963652,
+        "lambda": 24.71878300698442,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 100000,
+        "J": 0.19685519933700563,
+        "anchor": 0.03276089876890183,
+        "lambda": 25.643145018841416,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 105000,
+        "J": 0.1955970972776413,
+        "anchor": 0.03451685830950737,
+        "lambda": 26.59375369985663,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 110000,
+        "J": 0.19284321665763854,
+        "anchor": 0.03450937494635582,
+        "lambda": 27.56071060198152,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 115000,
+        "J": 0.19236409664154053,
+        "anchor": 0.03419862315058708,
+        "lambda": 28.55931946102827,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 120000,
+        "J": 0.18675902783870696,
+        "anchor": 0.033931993693113324,
+        "lambda": 29.552623836845147,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 125000,
+        "J": 0.1857093721628189,
+        "anchor": 0.03390570357441902,
+        "lambda": 30.572500466888467,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 130000,
+        "J": 0.1837246835231781,
+        "anchor": 0.03351208120584488,
+        "lambda": 31.611862867724547,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 135000,
+        "J": 0.1795719802379608,
+        "anchor": 0.033238585293293,
+        "lambda": 32.6523663639963,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 140000,
+        "J": 0.17666068971157073,
+        "anchor": 0.034066368639469144,
+        "lambda": 33.70277008501567,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 145000,
+        "J": 0.17633530795574187,
+        "anchor": 0.03475309237837791,
+        "lambda": 34.784202811604864,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 150000,
+        "J": 0.1773777723312378,
+        "anchor": 0.03580568730831146,
+        "lambda": 35.90970095653113,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 155000,
+        "J": 0.17492484152317048,
+        "anchor": 0.036815880239009856,
+        "lambda": 37.04888173577549,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 160000,
+        "J": 0.17421897649765014,
+        "anchor": 0.03679609596729279,
+        "lambda": 38.2172757708789,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 165000,
+        "J": 0.1719058334827423,
+        "anchor": 0.03705533593893051,
+        "lambda": 39.40003139009903,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 170000,
+        "J": 0.17057377994060516,
+        "anchor": 0.03789891973137856,
+        "lambda": 40.605815873884055,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 175000,
+        "J": 0.16916485726833344,
+        "anchor": 0.03800230845808983,
+        "lambda": 41.83383745841497,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 180000,
+        "J": 0.16801194250583648,
+        "anchor": 0.03799957856535911,
+        "lambda": 43.08637062719102,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 185000,
+        "J": 0.16763198077678682,
+        "anchor": 0.038853973150253296,
+        "lambda": 44.372321725966145,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 190000,
+        "J": 0.16738211512565612,
+        "anchor": 0.04018883258104324,
+        "lambda": 45.693613595706736,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 195000,
+        "J": 0.16765173375606537,
+        "anchor": 0.04094437286257744,
+        "lambda": 47.05770554494884,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 200000,
+        "J": 0.16625345945358277,
+        "anchor": 0.04175318703055382,
+        "lambda": 48.44539920191358,
+        "fired": false,
+        "ok": false
+      }
+    ],
+    "minutes": 188.71383078893027
+  },
+  "result": "completed",
+  "minutes_total": 221.9250122865041
+}

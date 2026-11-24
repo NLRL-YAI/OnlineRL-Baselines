@@ -135,13 +135,20 @@ behavior, not classifying the other `B − k` transitions.
 **Methods in one paragraph each.**
 - *A (Lagrangian cost-critic fine-tuning):* fine-tune the bug checkpoint in place.
   - Phase 1: actor and `Q_R` frozen; train a new twin cost critic `Q_C` (16 labeled samples
-    oversampled per batch, cost 1 on labels) under a frozen copy π_0, then freeze it as `Q_C^{π_0}`.
-    Twin aggregation: **independent** heads in the cost target (each bootstraps from its own target
-    head; `--cost_target indep`, the default), **max** wherever `Q_C` is used (actor loss, ruler, risk
-    gate). The spec's **min** target (`--cost_target min`) is biased by about −1 over the horizon, which
-    drowns the small values at low k. Optional: `--cost_model pu` replaces c = 1[labelled] with a
-    positive-unlabelled classifier's P(bug | s, a, s′) (`unlearn/pu.py`). It restores the scale at low
-    k but overestimates about 1.7× near the portal, so it is off by default.
+    oversampled per batch, cost 1 on labels), then freeze it as `Q_C^{π_0}`. **Default (2026-11-23):
+    IQL target + frozen copied trunk** (`--cost_target expectile --cost_init frozen_trunk`). The target
+    is c + γ V_C(s′), with V_C the lower 0.7-expectile of Q_C over the data actions, so it is in-sample.
+    Only the output layer trains, on top of Q_R's copied and frozen hidden layers. Why: it is the only
+    option whose scale doesn't shrink to about k/B, it has no memorised spikes on the labels, and it is
+    stable across seeds (Notion "Cost critic comparison"). Caveats: it is nearly flat in the action
+    (within-state AUC about 0.55, random actions only about 4% below data actions), so treat it as a
+    state-level signal. Its scale is set by the label share per batch (m), not learned. The usual side
+    arm is SARSA + copied trunk (`--cost_target sarsa --cost_init reward_trunk`): the best row ranking,
+    but its scale shrinks to about k/B. The former default target, `indep` (each head bootstraps from
+    its own target head), and the spec's `min` (biased by about −1 over the horizon) remain available.
+    Twin aggregation is **max** wherever `Q_C` is used (actor loss, ruler, risk gate). Optional:
+    `--cost_model pu` (a positive-unlabelled classifier, `unlearn/pu.py`) is off by default; it raises
+    false positives and is not used.
   - Phase 1b: compute the ruler `u` (its mean on the labels), the risk gate and the risk set, then
     run the gate checks.
   - Phase 2: train the actor on `Q_R − λ Q_C` with a scale-free constraint relative to `u`, a dual

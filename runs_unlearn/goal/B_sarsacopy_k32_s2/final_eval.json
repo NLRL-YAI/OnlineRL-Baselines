@@ -1,0 +1,10 @@
+{
+  "ground_truth": {
+    "auc_qc_pi0_is_bug": 0.9732110692427697,
+    "risk_set_frac": 0.639749288190882,
+    "risk_set_share_from_bug_trajs": 0.18079586799499467,
+    "bug_traj_states_in_risk_set": 0.969354993468008,
+    "original_states_in_risk_set": 0.595092,
+    "is_bug_states_in_risk_set": 0.9875195007800313
+  }
+}

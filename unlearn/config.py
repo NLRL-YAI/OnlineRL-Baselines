@@ -25,9 +25,11 @@ class UnlearnConfig:
     device: str = "cuda"
     deterministic: bool = True
     phase1_only: bool = False  # stop after Phase 1b (cost-critic studies); no Phase 2
-    cost_init: str = "reward_trunk"  # see nets.cost_critic_from: reward_trunk (spec 2.2), random=zero_head, ...
-    cost_target: str = "indep"  # Q_C TD target: "indep" (each head its own target head), "min" (spec 2.2), "mean", "sarsa",
-    #                              "expectile" (in-sample, IQL-style: c + gamma V_C(s'), V_C a lower expectile of Q_C(s, a_data))
+    cost_init: str = "frozen_trunk"  # see nets.cost_critic_from: frozen_trunk (default: Q_R's hidden layers copied and
+    #                                  frozen, linear head), reward_trunk (spec 2.2), random=zero_head, random_full
+    cost_target: str = "expectile"  # Q_C TD target: "expectile" (default; in-sample, IQL-style: c + gamma V_C(s'), V_C a lower
+    #                                 expectile of Q_C(s, a_data)), "indep" (each head its own target head; former default),
+    #                                 "min" (spec 2.2), "mean", "sarsa"
     cost_v_tau: float = 0.7  # expectile target: V_C weight on Q_C < V_C (> 0.5 pulls V_C toward the safer data actions)
     cost_model: str = "label"  # immediate cost: "label" (c = 1[labelled], spec) or "pu" (Elkan-Noto classifier, opt-in)
     pu_steps: int = 5_000
@@ -38,6 +40,16 @@ class UnlearnConfig:
     pu_batch: int = 256  # labelled rows per step (and as many uniform rows)
     pu_noise: float = 1.0  # Gaussian input noise, standardised units
     pu_eval_every: int = 100  # held-out checkpoint selection (needs >= 5 held-out labels)
+    # M1 (cut-and-fine-tune): cut the bug out of Q_R's MDP; at cut rows the Q_R target is r + gamma * cut_floor
+    qr_cut: str = "none"  # "none" (Method A), "labels" (the k labelled rows), "implied" (labels + rows whose implied
+    #                       immediate cost Q_C(s, a) - gamma V_C(s') reaches cut_kappa x its median on the held-out labels),
+    #                       "core" (labels + rows whose next state is in the cost critic's bug core: V_C(s') reaches
+    #                       cut_kappa x its median over the held-out labels' s'; a state-level cut, Absorb-and-Select's C)
+    cut_kappa: float = 0.5
+    cut_floor: float = -100.0  # value after a cut transition: -1 / (1 - gamma), i.e. never reaching the goal
+    cut_bc: bool = False  # drop cut rows from the actor's BC term
+    phase2_cost: str = "lagrangian"  # "lagrangian" (Method A: Q_R - lambda Q_C) or "none" (no cost term in the actor;
+    #                                  with qr_cut "none"/"labels", Phase 1 is skipped)
     qc_nonneg: bool = True  # clamp Q_C at 0 in its TD target, the actor loss and J_hat (c >= 0; Phase 2 runs drove J_hat < 0)
     cost_loss: str = "mse"  # "mse" or "expectile" (asymmetric: weight cost_tau when the target is above Q)
     cost_tau: float = 0.99
@@ -100,6 +112,12 @@ class UnlearnConfig:
             raise ValueError(f"cost_model must be label or pu, got {self.cost_model}")
         if self.cost_loss not in ("mse", "expectile"):
             raise ValueError(f"cost_loss must be mse or expectile, got {self.cost_loss}")
+        if self.qr_cut not in ("none", "labels", "implied", "core"):
+            raise ValueError(f"qr_cut must be none, labels, implied or core, got {self.qr_cut}")
+        if self.phase2_cost not in ("lagrangian", "none"):
+            raise ValueError(f"phase2_cost must be lagrangian or none, got {self.phase2_cost}")
+        if self.qr_cut in ("implied", "core") and self.cost_target != "expectile":
+            raise ValueError(f"qr_cut {self.qr_cut} needs cost_target expectile (it uses V_C)")
         if self.ruler_source not in ("holdout", "fit"):
             raise ValueError(f"ruler_source must be holdout or fit, got {self.ruler_source}")
         if self.kappa >= self.kappa_g:

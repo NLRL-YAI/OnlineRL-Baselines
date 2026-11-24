@@ -1,0 +1,58 @@
+[
+ {
+  "arm": "D1_cut",
+  "n_runs": 3,
+  "n_eval": 3,
+  "status": [
+   "t2_max",
+   "t2_max",
+   "t2_max"
+  ],
+  "succ": "0.953 \u00b1 0.020",
+  "legal": "0.952 \u00b1 0.022",
+  "bug": "0.002 \u00b1 0.002",
+  "patched": "0.953 \u00b1 0.020",
+  "warp_sweep": "0.008 \u00b1 0.006",
+  "onfoot_sweep": "0.961 \u00b1 0.008",
+  "legal_onfoot": "0.912 \u00b1 0.016",
+  "final_lambda": "10.000 \u00b1 0.000",
+  "frac_cut": "0.007 \u00b1 0.000"
+ },
+ {
+  "arm": "D1_cutbc",
+  "n_runs": 3,
+  "n_eval": 3,
+  "status": [
+   "t2_max",
+   "t2_max",
+   "t2_max"
+  ],
+  "succ": "0.967 \u00b1 0.002",
+  "legal": "0.965 \u00b1 0.000",
+  "bug": "0.002 \u00b1 0.002",
+  "patched": "0.967 \u00b1 0.002",
+  "warp_sweep": "0.005 \u00b1 0.004",
+  "onfoot_sweep": "0.974 \u00b1 0.006",
+  "legal_onfoot": "0.868 \u00b1 0.031",
+  "final_lambda": "10.000 \u00b1 0.000",
+  "frac_cut": "0.007 \u00b1 0.000"
+ },
+ {
+  "arm": "D1_nocut",
+  "n_runs": 3,
+  "n_eval": 3,
+  "status": [
+   "t2_max",
+   "t2_max",
+   "t2_max"
+  ],
+  "succ": "0.987 \u00b1 0.010",
+  "legal": "0.000 \u00b1 0.000",
+  "bug": "0.987 \u00b1 0.010",
+  "patched": "0.000 \u00b1 0.000",
+  "warp_sweep": "0.962 \u00b1 0.006",
+  "onfoot_sweep": "0.002 \u00b1 0.002",
+  "legal_onfoot": "0.789 \u00b1 0.010",
+  "final_lambda": "10.000 \u00b1 0.000"
+ }
+]

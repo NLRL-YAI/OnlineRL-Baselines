@@ -351,10 +351,66 @@ class MethodA:
             ck.update({f"{k}_opt": o.state_dict() for k, o in self.opts().items()})
         torch.save(ck, self.run_dir / name)
 
+    @torch.no_grad()
+    def cut_vector(self) -> torch.Tensor | None:
+        """M1: per-row cut weight (1 = no bootstrap through this transition), or None for Method A."""
+        cfg, d = self.cfg, self.data
+        if cfg.qr_cut == "none":
+            return None
+        cut = self.label_mask(self.L).float()
+        info = {"mode": cfg.qr_cut, "n_labels": len(self.L)}
+        if cfg.qr_cut == "implied":  # the cost critic's own immediate cost: its TD residual c_hat = Q_C(s, a) - gamma V_C(s')
+            c_hat = batched(lambda s, a, s2, dn: max2(self.qc_pi0(s, a)) - self.rc.gamma * (1.0 - dn) * self.vc(s2).squeeze(-1),
+                            d.obs, d.actions, d.next_obs, d.dones)  # fmt: skip
+            ref_rows = self.L_hold if len(self.L_hold) > 0 else self.L_fit
+            ref = float(c_hat[ref_rows].median())
+            thr = cfg.cut_kappa * ref
+            flagged = c_hat >= thr if ref > 0 else torch.zeros_like(cut, dtype=torch.bool)
+            flagged &= d.dones == 0  # a terminal row has no bootstrap to cut (and there c_hat is just Q_C)
+            cut = torch.maximum(cut, flagged.float())
+            info.update(
+                {
+                    "ref_median_c_hat": ref,
+                    "threshold": thr,
+                    "n_flagged_unlabelled": int((flagged & ~self.label_mask(self.L)).sum()),
+                }
+            )
+        if cfg.qr_cut == "core":  # state level: absorb every transition that enters the cost critic's bug core
+            v2 = batched(lambda s2: self.vc(s2).squeeze(-1), d.next_obs)
+            ref_rows = self.L_hold if len(self.L_hold) > 0 else self.L_fit
+            ref = float(v2[ref_rows].median())
+            thr = cfg.cut_kappa * ref
+            flagged = v2 >= thr if ref > 0 else torch.zeros_like(cut, dtype=torch.bool)
+            flagged &= d.dones == 0
+            cut = torch.maximum(cut, flagged.float())
+            info.update(
+                {
+                    "ref_median_v_c_next": ref,
+                    "threshold": thr,
+                    "n_flagged_unlabelled": int((flagged & ~self.label_mask(self.L)).sum()),
+                }
+            )
+        info["n_cut"], info["frac_cut"] = int(cut.sum()), float(cut.mean())
+        self.lineage["cut"] = info
+        print(f"[phase 2] qr_cut {cfg.qr_cut}: cutting {info['n_cut']} rows ({info['frac_cut']:.4f})", flush=True)
+        return cut
+
+    def skip_phase1(self):
+        """M1 without a cost term or a cost-critic cut (implied, core): no Phase 1, no gates, empty risk set."""
+        n = self.data.n
+        self.qc_pi0 = freeze(self.qc)
+        self.ruler = 1.0
+        self.g = torch.zeros(n, device=self.device)
+        self.risk = torch.zeros(n, dtype=torch.bool, device=self.device)
+        (self.run_dir / "gates.json").write_text(json.dumps({"skipped": "phase2_cost none without an implied cut"}, indent=2))
+        self.lineage["phase1"] = {"skipped": True}
+
     def phase2(self) -> tuple[int, str]:
         cfg, rc, d, dev = self.cfg, self.rc, self.data, self.device
         self.is_label, self.L_cur = self.label_mask(self.L), self.L  # all k labels from here on
         set_lr(self.qc_opt, cfg.cost_lr)
+        cut = self.cut_vector()
+        use_cost = cfg.phase2_cost == "lagrangian"
         nu = torch.tensor(math.log(cfg.lambda_init), device=dev)
         nu_lo, nu_hi = math.log(cfg.lambda_min), math.log(cfg.lambda_max)
         risk_rows = torch.nonzero(self.risk).squeeze(-1)
@@ -383,14 +439,18 @@ class MethodA:
                 a2_pi = (self.actor_t(s2) + self.noise_like(a)).clamp(-1.0, 1.0)
                 bc_c = ((a2_pi - a2) ** 2).sum(-1)
                 y = r + rc.gamma * (1.0 - dn) * (min2(self.qr_t(s2, a2_pi)) - rc.critic_bc_coef * bc_c)
+                if cut is not None:  # M1: no bootstrap through a cut (bug) transition
+                    ci = cut[i]
+                    y = (1.0 - ci) * y + ci * (r + rc.gamma * (1.0 - dn) * cfg.cut_floor)
             q1, q2 = self.qr(s, a)
             qr_loss = F.mse_loss(q1, y) + F.mse_loss(q2, y)
             gn_qr = grad_step(self.qr_opt, qr_loss, self.qr.parameters(), cfg.grad_clip)
             st["qr_loss"].append(qr_loss.detach())
             st["gn_qr"].append(gn_qr)
             # Q_C under the current target actor
-            st["qc_loss"].append(self.cost_step(self.actor_t, u))
-            st["gn_qc"].append(self.qc_gn)
+            if use_cost:
+                st["qc_loss"].append(self.cost_step(self.actor_t, u))
+                st["gn_qc"].append(self.qc_gn)
 
             if step % rc.policy_freq == 0:
                 ia, sa, aa = i, s, a
@@ -407,16 +467,20 @@ class MethodA:
                     a0 = self.pi0(sa)
                 gi = g[ia]
                 bc = cfg.alpha_actor * ((pi - aa) ** 2).sum(-1)
+                if cut is not None and cfg.cut_bc:  # M1: do not imitate cut rows
+                    bc = bc * (1.0 - cut[ia])
                 dist = ((pi - a0) ** 2).sum(-1)
                 anchor = cfg.beta * (1.0 - gi) * dist
-                actor_loss = (bc - (q_r - lam * q_c) / z + anchor).mean()
+                cost_term = lam * q_c if use_cost else torch.zeros_like(q_c)
+                actor_loss = (bc - (q_r - cost_term) / z + anchor).mean()
                 gn_a = grad_step(self.actor_opt, actor_loss, self.actor.parameters(), cfg.grad_clip)
                 # dual ascent on log lambda, on the risk states of the batch
                 with torch.no_grad():
                     rm = (gi >= 1.0).float()
                     has = rm.sum() > 0
                     j_hat = (q_c.detach() * rm).sum() / rm.sum().clamp_min(1.0) / ruler
-                    nu = torch.where(has, (nu + cfg.eta_nu * (j_hat - cfg.kappa)).clamp(nu_lo, nu_hi), nu)
+                    if use_cost:
+                        nu = torch.where(has, (nu + cfg.eta_nu * (j_hat - cfg.kappa)).clamp(nu_lo, nu_hi), nu)
                     out = 1.0 - rm
                     anchor_out = (dist.detach() * out).sum() / out.sum().clamp_min(1.0)
                 polyak(self.actor_t, self.actor, rc.tau)
@@ -444,13 +508,14 @@ class MethodA:
                     pdrift = ((flat_params(self.actor) - self.theta0).norm() / self.theta0.norm()).item()
                 qr_loss_ref = qr_loss_ref or row["qr_loss"]
                 fired = []
-                if not all(math.isfinite(row[k]) for k in ("qr_loss", "qc_loss", "actor_loss", "gn_actor", "gn_qr", "gn_qc")):
+                fin = ("qr_loss", "actor_loss", "gn_actor", "gn_qr") + (("qc_loss", "gn_qc") if use_cost else ())
+                if not all(math.isfinite(row[k]) for k in fin):
                     fired.append("W5_nonfinite")
                 if not (-105.0 <= row["qr_mean"] <= 5.0) or not (-0.5 <= row["qc_mean"] <= 100.0):
                     fired.append("W3_value_range")
                 if qr_loss_ref and row["qr_loss"] > 10.0 * qr_loss_ref:
                     fired.append("W3_critic_loss")
-                if probe_qc_med > w2_base + cfg.w2_rise:
+                if use_cost and probe_qc_med > w2_base + cfg.w2_rise:
                     fired.append("W2_cost_inflation")
                 if row["abs_pi"] > 0.95:
                     fired.append("W4_saturated")
@@ -496,7 +561,7 @@ class MethodA:
                 if at_cap_infeasible >= cfg.infeasible_steps:
                     status, reason = EXIT_INFEASIBLE, f"J_C > kappa with lambda at its cap for {cfg.infeasible_steps} steps"
                     break
-                if row["anchor_out"] > 3 * cfg.delta_max:
+                if use_cost and row["anchor_out"] > 3 * cfg.delta_max:  # Method A's retain guard; M1 may move freely
                     status, reason = EXIT_ABORT, f"anchor distance {row['anchor_out']:.4f} > 3 delta_max (retain drift)"
                     break
 
@@ -510,7 +575,8 @@ class MethodA:
                 windows.append({"step": step, "J": jw, "anchor": aw, "lambda": lam_now, "fired": win["fired"], "ok": ok})
                 win = {"J": [], "anchor": [], "fired": False}
                 if (
-                    stop_rule_step is None
+                    use_cost
+                    and stop_rule_step is None
                     and len(windows) >= cfg.stop_windows
                     and all(w["ok"] for w in windows[-cfg.stop_windows :])
                 ):
@@ -538,8 +604,12 @@ class MethodA:
     def run(self) -> int:
         (self.run_dir / "config.json").write_text(json.dumps(asdict(self.cfg), indent=2))
         self.phase0()
-        self.phase1()
-        gates_ok = self.phase1b()
+        if self.cfg.phase2_cost == "none" and self.cfg.qr_cut not in ("implied", "core"):
+            self.skip_phase1()
+            gates_ok = True
+        else:
+            self.phase1()
+            gates_ok = self.phase1b()
         if self.cfg.phase1_only:
             self.lineage["result"] = "phase1_only" + ("" if gates_ok else " (gate_fail)")
             self.write_lineage()

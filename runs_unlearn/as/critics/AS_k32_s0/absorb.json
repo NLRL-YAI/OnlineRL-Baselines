@@ -1,0 +1,24 @@
+{
+ "args": {
+  "cost_run": "runs_unlearn/cc/cc_frozen_trunk_expectile_k32",
+  "rho": "V",
+  "core": "hard",
+  "tau_c": 0.5,
+  "lo": 0.25,
+  "hi": 0.75,
+  "tau": 0.9,
+  "gamma": 0.99,
+  "steps": 300000,
+  "batch": 1024,
+  "seed": 0,
+  "out": "runs_unlearn/as/critics/AS_k32_s0"
+ },
+ "k": "32",
+ "cost_seed": 0,
+ "ref": 5.384316444396973,
+ "n_ref": 6,
+ "core": "hard",
+ "absorbed_mass": 30426.0,
+ "absorbed_frac": 0.02679555118083954,
+ "n_labels": 32
+}

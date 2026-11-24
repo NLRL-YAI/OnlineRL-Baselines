@@ -1,0 +1,17 @@
+{
+ "select": {
+  "critic": "iql:runs_unlearn/e4/iql9_g99_cutB_s2",
+  "diffusion": "runs_unlearn/as/diff_s2.pt",
+  "agg": "mean",
+  "N": 32,
+  "K": 0,
+  "step_q": 0.05,
+  "noise": 0.5,
+  "mode": "argmax",
+  "episodes": 200,
+  "sweep_eps": 10,
+  "seed": 2,
+  "out": "runs_unlearn/as/P0b_sfbc_s2"
+ },
+ "result": "evaluated"
+}

@@ -1,0 +1,78 @@
+[
+ {
+  "arm": "D4_M1_k32",
+  "n_runs": 3,
+  "n_eval": 1,
+  "status": [
+   "t2_max",
+   "gate_fail",
+   "gate_fail"
+  ],
+  "succ": "0.050 \u00b1 0.000",
+  "legal": "0.000 \u00b1 0.000",
+  "bug": "0.155 \u00b1 0.000",
+  "patched": "0.000 \u00b1 0.000",
+  "warp_sweep": "0.155 \u00b1 0.000",
+  "onfoot_sweep": "0.009 \u00b1 0.000",
+  "legal_onfoot": "0.033 \u00b1 0.000",
+  "final_lambda": "10.000 \u00b1 0.000",
+  "frac_cut": "0.147 \u00b1 0.000"
+ },
+ {
+  "arm": "D4_M1_k1000",
+  "n_runs": 3,
+  "n_eval": 2,
+  "status": [
+   "gate_fail",
+   "t2_max",
+   "t2_max"
+  ],
+  "succ": "0.807 \u00b1 0.012",
+  "legal": "0.013 \u00b1 0.013",
+  "bug": "0.863 \u00b1 0.057",
+  "patched": "0.020 \u00b1 0.020",
+  "warp_sweep": "0.425 \u00b1 0.020",
+  "onfoot_sweep": "0.082 \u00b1 0.073",
+  "legal_onfoot": "0.196 \u00b1 0.133",
+  "final_lambda": "10.000 \u00b1 0.000",
+  "frac_cut": "0.022 \u00b1 0.002"
+ },
+ {
+  "arm": "D4_M1plus_k32",
+  "n_runs": 3,
+  "n_eval": 1,
+  "status": [
+   "anchor distance 1.0877 > 3 delta_max (retain drift)",
+   "gate_fail",
+   "gate_fail"
+  ],
+  "succ": "0.000 \u00b1 0.000",
+  "legal": "0.000 \u00b1 0.000",
+  "bug": "0.000 \u00b1 0.000",
+  "patched": "0.000 \u00b1 0.000",
+  "warp_sweep": "0.000 \u00b1 0.000",
+  "onfoot_sweep": "0.000 \u00b1 0.000",
+  "legal_onfoot": "0.004 \u00b1 0.000",
+  "final_lambda": "10.197 \u00b1 0.000",
+  "frac_cut": "0.147 \u00b1 0.000"
+ },
+ {
+  "arm": "D4_M1plus_k1000",
+  "n_runs": 3,
+  "n_eval": 2,
+  "status": [
+   "gate_fail",
+   "anchor distance 0.3642 > 3 delta_max (retain drift)",
+   "anchor distance 0.4100 > 3 delta_max (retain drift)"
+  ],
+  "succ": "0.015 \u00b1 0.015",
+  "legal": "0.000 \u00b1 0.000",
+  "bug": "0.022 \u00b1 0.022",
+  "patched": "0.000 \u00b1 0.000",
+  "warp_sweep": "0.032 \u00b1 0.032",
+  "onfoot_sweep": "0.000 \u00b1 0.000",
+  "legal_onfoot": "0.429 \u00b1 0.350",
+  "final_lambda": "10.227 \u00b1 0.001",
+  "frac_cut": "0.022 \u00b1 0.002"
+ }
+]

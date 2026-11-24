@@ -1,0 +1,24 @@
+{
+ "args": {
+  "cost_run": "runs_unlearn/cc_seeds/cc_frozen_trunk_expectile_k1000_s1",
+  "rho": "Q",
+  "core": "hard",
+  "tau_c": 0.5,
+  "lo": 0.25,
+  "hi": 0.75,
+  "tau": 0.9,
+  "gamma": 0.99,
+  "steps": 300000,
+  "batch": 1024,
+  "seed": 1,
+  "out": "runs_unlearn/as/critics/ASrhoQ_k1000_s1"
+ },
+ "k": "1000",
+ "cost_seed": 1,
+ "ref": 3.7825074195861816,
+ "n_ref": 200,
+ "core": "hard",
+ "absorbed_mass": 72513.0,
+ "absorbed_frac": 0.0638607069849968,
+ "n_labels": 1000
+}

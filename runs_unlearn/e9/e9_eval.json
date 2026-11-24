@@ -1,0 +1,570 @@
+{
+ "qc_iql7_B": {
+  "label": "all D, every bug labelled (k=B)",
+  "warp-basin/contrast_auc": 0.98520375,
+  "warp-basin/qc_legal": 0.2534404695034027,
+  "warp-basin/qc_bug": 3.2638938426971436,
+  "warp-basin/qc_legal_in": 0.2534404695034027,
+  "warp-basin/qc_bug_in": 3.2638938426971436,
+  "warp-basin/n_legal_in": 73367,
+  "warp-basin/n_bug_in": 4459,
+  "warp-basin/qc_legal_out": NaN,
+  "warp-basin/qc_bug_out": NaN,
+  "warp-basin/n_legal_out": 0,
+  "warp-basin/n_bug_out": 0,
+  "warp-basin/obj30_auc_legal_gt_bug": 0.906842625,
+  "near-portal/contrast_auc": 0.8551021775544388,
+  "near-portal/qc_legal": 0.5243571996688843,
+  "near-portal/qc_bug": 2.7754454612731934,
+  "near-portal/qc_legal_in": 0.5243571996688843,
+  "near-portal/qc_bug_in": 2.7754454612731934,
+  "near-portal/n_legal_in": 14128,
+  "near-portal/n_bug_in": 597,
+  "near-portal/qc_legal_out": NaN,
+  "near-portal/qc_bug_out": NaN,
+  "near-portal/n_legal_out": 0,
+  "near-portal/n_bug_out": 0,
+  "near-portal/obj30_auc_legal_gt_bug": 0.43577596314907874,
+  "warp-basin/pick0": [
+   0.07318536292741452,
+   0.32693461307738453
+  ],
+  "warp-basin/pick3": [
+   0.08878224355128975,
+   0.1853629274145171
+  ],
+  "warp-basin/pick10": [
+   0.10497900419916016,
+   0.10917816436712657
+  ],
+  "warp-basin/pick30": [
+   0.11577684463107378,
+   0.08518296340731854
+  ],
+  "warp-basin/pick100": [
+   0.11997600479904019,
+   0.07018596280743851
+  ],
+  "warp-basin/at_s_auc_obj30": 0.6069334001845248,
+  "warp-basin/at_s_auc_qc": 0.6243034908496276,
+  "near-portal/pick0": [
+   0.5862524785194977,
+   0.2802379378717779
+  ],
+  "near-portal/pick3": [
+   0.6259087904824852,
+   0.1116986120290813
+  ],
+  "near-portal/pick10": [
+   0.6007931262392597,
+   0.12227362855254462
+  ],
+  "near-portal/pick30": [
+   0.5657633840052875,
+   0.12029081295439524
+  ],
+  "near-portal/pick100": [
+   0.5565102445472571,
+   0.046265697290152015
+  ],
+  "near-portal/at_s_auc_obj30": 0.5173275997582776,
+  "near-portal/at_s_auc_qc": 0.5222211805534837
+ },
+ "qc_iql7_lab1000": {
+  "label": "all D, k=1000 labels",
+  "warp-basin/contrast_auc": 0.9857988125,
+  "warp-basin/qc_legal": 0.024999994784593582,
+  "warp-basin/qc_bug": 0.3594043552875519,
+  "warp-basin/qc_legal_in": 0.024999994784593582,
+  "warp-basin/qc_bug_in": 0.3594043552875519,
+  "warp-basin/n_legal_in": 73367,
+  "warp-basin/n_bug_in": 4459,
+  "warp-basin/qc_legal_out": NaN,
+  "warp-basin/qc_bug_out": NaN,
+  "warp-basin/n_legal_out": 0,
+  "warp-basin/n_bug_out": 0,
+  "warp-basin/obj30_auc_legal_gt_bug": 0.0982103125,
+  "near-portal/contrast_auc": 0.8282592127303182,
+  "near-portal/qc_legal": 0.048146288841962814,
+  "near-portal/qc_bug": 0.291705459356308,
+  "near-portal/qc_legal_in": 0.048146288841962814,
+  "near-portal/qc_bug_in": 0.291705459356308,
+  "near-portal/n_legal_in": 14128,
+  "near-portal/n_bug_in": 597,
+  "near-portal/qc_legal_out": NaN,
+  "near-portal/qc_bug_out": NaN,
+  "near-portal/n_legal_out": 0,
+  "near-portal/n_bug_out": 0,
+  "near-portal/obj30_auc_legal_gt_bug": 0.2028471524288107,
+  "warp-basin/pick0": [
+   0.07318536292741452,
+   0.32693461307738453
+  ],
+  "warp-basin/pick3": [
+   0.07378524295140972,
+   0.3197360527894421
+  ],
+  "warp-basin/pick10": [
+   0.07438512297540492,
+   0.3083383323335333
+  ],
+  "warp-basin/pick30": [
+   0.08878224355128975,
+   0.19016196760647872
+  ],
+  "warp-basin/pick100": [
+   0.11277744451109778,
+   0.11277744451109778
+  ],
+  "warp-basin/at_s_auc_obj30": 0.530472497122047,
+  "warp-basin/at_s_auc_qc": 0.6512741029169332,
+  "near-portal/pick0": [
+   0.5862524785194977,
+   0.2802379378717779
+  ],
+  "near-portal/pick3": [
+   0.5888962326503635,
+   0.26107072042300067
+  ],
+  "near-portal/pick10": [
+   0.6040978189028421,
+   0.209517514871117
+  ],
+  "near-portal/pick30": [
+   0.6107072042300066,
+   0.12359550561797752
+  ],
+  "near-portal/pick100": [
+   0.5888962326503635,
+   0.12690019828155982
+  ],
+  "near-portal/at_s_auc_obj30": 0.5135970889066728,
+  "near-portal/at_s_auc_qc": 0.5427262882875477
+ },
+ "qc_iql7_PU1000": {
+  "label": "all D, PU k=1000",
+  "warp-basin/contrast_auc": 0.95129821875,
+  "warp-basin/qc_legal": 1.5393563508987427,
+  "warp-basin/qc_bug": 8.633463859558105,
+  "warp-basin/qc_legal_in": 1.5393563508987427,
+  "warp-basin/qc_bug_in": 8.633463859558105,
+  "warp-basin/n_legal_in": 73367,
+  "warp-basin/n_bug_in": 4459,
+  "warp-basin/qc_legal_out": NaN,
+  "warp-basin/qc_bug_out": NaN,
+  "warp-basin/n_legal_out": 0,
+  "warp-basin/n_bug_out": 0,
+  "warp-basin/obj30_auc_legal_gt_bug": 0.9534131875,
+  "near-portal/contrast_auc": 0.9027768006700168,
+  "near-portal/qc_legal": 5.655007362365723,
+  "near-portal/qc_bug": 13.938563346862793,
+  "near-portal/qc_legal_in": 5.655007362365723,
+  "near-portal/qc_bug_in": 13.938563346862793,
+  "near-portal/n_legal_in": 14128,
+  "near-portal/n_bug_in": 597,
+  "near-portal/qc_legal_out": NaN,
+  "near-portal/qc_bug_out": NaN,
+  "near-portal/n_legal_out": 0,
+  "near-portal/n_bug_out": 0,
+  "near-portal/obj30_auc_legal_gt_bug": 0.8964388609715243,
+  "warp-basin/pick0": [
+   0.07318536292741452,
+   0.32693461307738453
+  ],
+  "warp-basin/pick3": [
+   0.1265746850629874,
+   0.09058188362327535
+  ],
+  "warp-basin/pick10": [
+   0.13737252549490103,
+   0.0611877624475105
+  ],
+  "warp-basin/pick30": [
+   0.17636472705458908,
+   0.04979004199160168
+  ],
+  "warp-basin/pick100": [
+   0.21475704859028194,
+   0.04919016196760648
+  ],
+  "warp-basin/at_s_auc_obj30": 0.6520073915241388,
+  "warp-basin/at_s_auc_qc": 0.657485597799493,
+  "near-portal/pick0": [
+   0.5862524785194977,
+   0.2802379378717779
+  ],
+  "near-portal/pick3": [
+   0.7065432914738929,
+   0.041639127561136816
+  ],
+  "near-portal/pick10": [
+   0.6391275611368142,
+   0.031725049570389956
+  ],
+  "near-portal/pick30": [
+   0.7065432914738929,
+   0.02247191011235955
+  ],
+  "near-portal/pick100": [
+   0.7105089226701917,
+   0.020489094514210177
+  ],
+  "near-portal/at_s_auc_obj30": 0.5830910300028703,
+  "near-portal/at_s_auc_qc": 0.5828520999495884
+ },
+ "tq_fullB": {
+  "label": "bug traj. only, fully labelled (979 traj)",
+  "warp-basin/contrast_auc": 0.8782505,
+  "warp-basin/qc_legal": 2.425534248352051,
+  "warp-basin/qc_bug": 5.192169189453125,
+  "warp-basin/qc_legal_in": 2.2710788249969482,
+  "warp-basin/qc_bug_in": 5.192169189453125,
+  "warp-basin/n_legal_in": 6145,
+  "warp-basin/n_bug_in": 4459,
+  "warp-basin/qc_legal_out": 2.4396536350250244,
+  "warp-basin/qc_bug_out": NaN,
+  "warp-basin/n_legal_out": 67222,
+  "warp-basin/n_bug_out": 0,
+  "warp-basin/obj30_auc_legal_gt_bug": 0.76509803125,
+  "near-portal/contrast_auc": 0.628499162479062,
+  "near-portal/qc_legal": 4.035192966461182,
+  "near-portal/qc_bug": 6.13352108001709,
+  "near-portal/qc_legal_in": 2.8504483699798584,
+  "near-portal/qc_bug_in": 6.13352108001709,
+  "near-portal/n_legal_in": 1321,
+  "near-portal/n_bug_in": 597,
+  "near-portal/qc_legal_out": 4.157395362854004,
+  "near-portal/qc_bug_out": NaN,
+  "near-portal/n_legal_out": 12807,
+  "near-portal/n_bug_out": 0,
+  "near-portal/obj30_auc_legal_gt_bug": 0.5791319095477387,
+  "warp-basin/pick0": [
+   0.07318536292741452,
+   0.32693461307738453
+  ],
+  "warp-basin/pick3": [
+   0.07138572285542892,
+   0.3011397720455909
+  ],
+  "warp-basin/pick10": [
+   0.07078584283143372,
+   0.27594481103779245
+  ],
+  "warp-basin/pick30": [
+   0.07318536292741452,
+   0.20395920815836832
+  ],
+  "warp-basin/pick100": [
+   0.07318536292741452,
+   0.1841631673665267
+  ],
+  "warp-basin/at_s_auc_obj30": 0.48819098323805976,
+  "warp-basin/at_s_auc_qc": 0.5194828527191708,
+  "near-portal/pick0": [
+   0.5862524785194977,
+   0.2802379378717779
+  ],
+  "near-portal/pick3": [
+   0.5532055518836748,
+   0.1969596827495043
+  ],
+  "near-portal/pick10": [
+   0.549239920687376,
+   0.16523463317911435
+  ],
+  "near-portal/pick30": [
+   0.5611368142762723,
+   0.12690019828155982
+  ],
+  "near-portal/pick100": [
+   0.5194976867151355,
+   0.11500330469266358
+  ],
+  "near-portal/at_s_auc_obj30": 0.5222199115684718,
+  "near-portal/at_s_auc_qc": 0.5293542712392892
+ },
+ "tq_full1000": {
+  "label": "631 labelled traj., fully labelled",
+  "warp-basin/contrast_auc": 0.8739904375,
+  "warp-basin/qc_legal": 2.343975305557251,
+  "warp-basin/qc_bug": 5.346866607666016,
+  "warp-basin/qc_legal_in": 2.0409464836120605,
+  "warp-basin/qc_bug_in": 5.768293380737305,
+  "warp-basin/n_legal_in": 3883,
+  "warp-basin/n_bug_in": 3053,
+  "warp-basin/qc_legal_out": 2.3609094619750977,
+  "warp-basin/qc_bug_out": 4.431776523590088,
+  "warp-basin/n_legal_out": 69484,
+  "warp-basin/n_bug_out": 1406,
+  "warp-basin/obj30_auc_legal_gt_bug": 0.79351496875,
+  "near-portal/contrast_auc": 0.618714824120603,
+  "near-portal/qc_legal": 4.212950229644775,
+  "near-portal/qc_bug": 6.4255805015563965,
+  "near-portal/qc_legal_in": 2.8066272735595703,
+  "near-portal/qc_bug_in": 7.120187282562256,
+  "near-portal/n_legal_in": 872,
+  "near-portal/n_bug_in": 442,
+  "near-portal/qc_legal_out": 4.305459976196289,
+  "near-portal/qc_bug_out": 4.444831371307373,
+  "near-portal/n_legal_out": 13256,
+  "near-portal/n_bug_out": 155,
+  "near-portal/obj30_auc_legal_gt_bug": 0.557377093802345,
+  "warp-basin/pick0": [
+   0.07318536292741452,
+   0.32693461307738453
+  ],
+  "warp-basin/pick3": [
+   0.0635872825434913,
+   0.364127174565087
+  ],
+  "warp-basin/pick10": [
+   0.0683863227354529,
+   0.3119376124775045
+  ],
+  "warp-basin/pick30": [
+   0.06718656268746251,
+   0.2735452909418116
+  ],
+  "warp-basin/pick100": [
+   0.07558488302339532,
+   0.25674865026994603
+  ],
+  "warp-basin/at_s_auc_obj30": 0.4913126443087081,
+  "warp-basin/at_s_auc_qc": 0.5114926721647496,
+  "near-portal/pick0": [
+   0.5862524785194977,
+   0.2802379378717779
+  ],
+  "near-portal/pick3": [
+   0.5082617316589557,
+   0.2604097818902842
+  ],
+  "near-portal/pick10": [
+   0.5095836087243887,
+   0.2339722405816259
+  ],
+  "near-portal/pick30": [
+   0.5247851949768672,
+   0.19960343688037013
+  ],
+  "near-portal/pick100": [
+   0.5234633179114342,
+   0.18241903502974224
+  ],
+  "near-portal/at_s_auc_obj30": 0.5244924630580254,
+  "near-portal/at_s_auc_qc": 0.5299900956407039
+ },
+ "tq_lab1000": {
+  "label": "631 labelled traj., k=1000 labels only",
+  "warp-basin/contrast_auc": 0.834607,
+  "warp-basin/qc_legal": 0.3675577938556671,
+  "warp-basin/qc_bug": 0.8374735116958618,
+  "warp-basin/qc_legal_in": 0.309535413980484,
+  "warp-basin/qc_bug_in": 0.8836761713027954,
+  "warp-basin/n_legal_in": 3883,
+  "warp-basin/n_bug_in": 3053,
+  "warp-basin/qc_legal_out": 0.37080028653144836,
+  "warp-basin/qc_bug_out": 0.7371489405632019,
+  "warp-basin/n_legal_out": 69484,
+  "warp-basin/n_bug_out": 1406,
+  "warp-basin/obj30_auc_legal_gt_bug": 0.156931,
+  "near-portal/contrast_auc": 0.5576553601340033,
+  "near-portal/qc_legal": 0.6682033538818359,
+  "near-portal/qc_bug": 0.8766247630119324,
+  "near-portal/qc_legal_in": 0.41692113876342773,
+  "near-portal/qc_bug_in": 0.9463632106781006,
+  "near-portal/n_legal_in": 872,
+  "near-portal/n_bug_in": 442,
+  "near-portal/qc_legal_out": 0.6847330927848816,
+  "near-portal/qc_bug_out": 0.6777578592300415,
+  "near-portal/n_legal_out": 13256,
+  "near-portal/n_bug_out": 155,
+  "near-portal/obj30_auc_legal_gt_bug": 0.24607286432160805,
+  "warp-basin/pick0": [
+   0.07318536292741452,
+   0.32693461307738453
+  ],
+  "warp-basin/pick3": [
+   0.07078584283143372,
+   0.36172765446910615
+  ],
+  "warp-basin/pick10": [
+   0.06778644271145771,
+   0.43431313737252547
+  ],
+  "warp-basin/pick30": [
+   0.07318536292741452,
+   0.3677264547090582
+  ],
+  "warp-basin/pick100": [
+   0.07438512297540492,
+   0.24415116976604678
+  ],
+  "warp-basin/at_s_auc_obj30": 0.44815942450272817,
+  "warp-basin/at_s_auc_qc": 0.4830150848822323,
+  "near-portal/pick0": [
+   0.5862524785194977,
+   0.2802379378717779
+  ],
+  "near-portal/pick3": [
+   0.5697290152015863,
+   0.2749504296100463
+  ],
+  "near-portal/pick10": [
+   0.559153998678123,
+   0.29015201586252476
+  ],
+  "near-portal/pick30": [
+   0.5313945803040317,
+   0.30931923331130207
+  ],
+  "near-portal/pick100": [
+   0.5479180436219432,
+   0.2637144745538665
+  ],
+  "near-portal/at_s_auc_obj30": 0.4824660015907391,
+  "near-portal/at_s_auc_qc": 0.4942819634089284
+ },
+ "tq_full100": {
+  "label": "95 labelled traj., fully labelled",
+  "warp-basin/contrast_auc": 0.8546980625,
+  "warp-basin/qc_legal": 2.6516268253326416,
+  "warp-basin/qc_bug": 5.28016996383667,
+  "warp-basin/qc_legal_in": 2.8082096576690674,
+  "warp-basin/qc_bug_in": 6.663271903991699,
+  "warp-basin/n_legal_in": 584,
+  "warp-basin/n_bug_in": 473,
+  "warp-basin/qc_legal_out": 2.6503703594207764,
+  "warp-basin/qc_bug_out": 5.116044044494629,
+  "warp-basin/n_legal_out": 72783,
+  "warp-basin/n_bug_out": 3986,
+  "warp-basin/obj30_auc_legal_gt_bug": 0.7718138437500001,
+  "near-portal/contrast_auc": 0.5720841708542713,
+  "near-portal/qc_legal": 4.642682075500488,
+  "near-portal/qc_bug": 6.01755428314209,
+  "near-portal/qc_legal_in": 3.421177387237549,
+  "near-portal/qc_bug_in": 9.080716133117676,
+  "near-portal/n_legal_in": 188,
+  "near-portal/n_bug_in": 78,
+  "near-portal/qc_legal_out": 4.659155368804932,
+  "near-portal/qc_bug_out": 5.557194709777832,
+  "near-portal/n_legal_out": 13940,
+  "near-portal/n_bug_out": 519,
+  "near-portal/obj30_auc_legal_gt_bug": 0.5010975711892798,
+  "warp-basin/pick0": [
+   0.07318536292741452,
+   0.32693461307738453
+  ],
+  "warp-basin/pick3": [
+   0.07798440311937613,
+   0.30713857228554287
+  ],
+  "warp-basin/pick10": [
+   0.07858428314337132,
+   0.29934013197360526
+  ],
+  "warp-basin/pick30": [
+   0.07498500299940011,
+   0.27834433113377327
+  ],
+  "warp-basin/pick100": [
+   0.07498500299940011,
+   0.2693461307738452
+  ],
+  "warp-basin/at_s_auc_obj30": 0.5175690901191915,
+  "warp-basin/at_s_auc_qc": 0.5394176362339416,
+  "near-portal/pick0": [
+   0.5862524785194977,
+   0.2802379378717779
+  ],
+  "near-portal/pick3": [
+   0.5882352941176471,
+   0.21150033046926636
+  ],
+  "near-portal/pick10": [
+   0.566424322538004,
+   0.17911434236615995
+  ],
+  "near-portal/pick30": [
+   0.5717118307997356,
+   0.11368142762723067
+  ],
+  "near-portal/pick100": [
+   0.5670852610707204,
+   0.08724388631857237
+  ],
+  "near-portal/at_s_auc_obj30": 0.5188097389883306,
+  "near-portal/at_s_auc_qc": 0.5245474041488337
+ },
+ "tq_lab100": {
+  "label": "95 labelled traj., k=100 labels only",
+  "warp-basin/contrast_auc": 0.8610739375,
+  "warp-basin/qc_legal": 0.3264913558959961,
+  "warp-basin/qc_bug": 0.5744783878326416,
+  "warp-basin/qc_legal_in": 0.3231438994407654,
+  "warp-basin/qc_bug_in": 0.5921245813369751,
+  "warp-basin/n_legal_in": 584,
+  "warp-basin/n_bug_in": 473,
+  "warp-basin/qc_legal_out": 0.3265182375907898,
+  "warp-basin/qc_bug_out": 0.5723844766616821,
+  "warp-basin/n_legal_out": 72783,
+  "warp-basin/n_bug_out": 3986,
+  "warp-basin/obj30_auc_legal_gt_bug": 0.0513560625,
+  "near-portal/contrast_auc": 0.5523446398659967,
+  "near-portal/qc_legal": 0.5911045670509338,
+  "near-portal/qc_bug": 0.6313783526420593,
+  "near-portal/qc_legal_in": 0.43961554765701294,
+  "near-portal/qc_bug_in": 0.6748424172401428,
+  "near-portal/n_legal_in": 188,
+  "near-portal/n_bug_in": 78,
+  "near-portal/qc_legal_out": 0.5931475162506104,
+  "near-portal/qc_bug_out": 0.6248462200164795,
+  "near-portal/n_legal_out": 13940,
+  "near-portal/n_bug_out": 519,
+  "near-portal/obj30_auc_legal_gt_bug": 0.10287730318257957,
+  "warp-basin/pick0": [
+   0.07318536292741452,
+   0.32693461307738453
+  ],
+  "warp-basin/pick3": [
+   0.07258548290341932,
+   0.3215356928614277
+  ],
+  "warp-basin/pick10": [
+   0.07318536292741452,
+   0.3209358128374325
+  ],
+  "warp-basin/pick30": [
+   0.07378524295140972,
+   0.32993401319736054
+  ],
+  "warp-basin/pick100": [
+   0.07618476304739052,
+   0.28374325134973005
+  ],
+  "warp-basin/at_s_auc_obj30": 0.42447970378958055,
+  "warp-basin/at_s_auc_qc": 0.5073718185893891,
+  "near-portal/pick0": [
+   0.5862524785194977,
+   0.2802379378717779
+  ],
+  "near-portal/pick3": [
+   0.5915399867812293,
+   0.2656972901520159
+  ],
+  "near-portal/pick10": [
+   0.5855915399867813,
+   0.25446133509583607
+  ],
+  "near-portal/pick30": [
+   0.5717118307997356,
+   0.2478519497686715
+  ],
+  "near-portal/pick100": [
+   0.5565102445472571,
+   0.20555188367481825
+  ],
+  "near-portal/at_s_auc_obj30": 0.4889528344542531,
+  "near-portal/at_s_auc_qc": 0.5152159990112046
+ }
+}

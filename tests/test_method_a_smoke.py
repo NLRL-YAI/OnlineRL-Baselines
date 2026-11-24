@@ -78,3 +78,40 @@ def test_smoke_run(tmp_path):
     assert policy(np.zeros((2, 29), np.float32)).shape == (2, 8)
     with pytest.raises(FileExistsError):
         MethodA(cfg)  # refuses to overwrite a run
+
+
+def test_m1_config_validation():
+    with pytest.raises(ValueError):
+        UnlearnConfig(qr_cut="bogus")
+    with pytest.raises(ValueError):
+        UnlearnConfig(phase2_cost="bogus")
+    with pytest.raises(ValueError):
+        UnlearnConfig(qr_cut="implied", cost_target="sarsa")  # the implied cut needs V_C
+    with pytest.raises(ValueError):
+        UnlearnConfig(qr_cut="core", cost_target="sarsa")  # so does the core cut
+    c = UnlearnConfig()
+    assert (c.cost_init, c.cost_target) == ("frozen_trunk", "expectile")  # the default cost critic
+
+
+@needs
+def test_m1_cut_run(tmp_path):
+    """M1: labels cut with no cost term skips Phase 1; the implied cut never touches terminal rows."""
+    common = dict(run_dir=str(tmp_path), t2_max=500, snapshot_every=500, stop_window=250, watchdog_every=250,
+                  print_every=500, beta=0.0, phase2_cost="none", k=10)  # fmt: skip
+    m = MethodA(UnlearnConfig(run_name="lab", qr_cut="labels", cut_bc=True, **common))
+    assert m.run() != EXIT_GATE
+    lin = json.loads((tmp_path / "lab" / "lineage.json").read_text())
+    assert lin["phase1"] == {"skipped": True} and lin["cut"]["n_cut"] == 10
+    m = MethodA(UnlearnConfig(run_name="imp", qr_cut="implied", t1=1_000, track_every=500, track_size=10_000,
+                              ignore_gates=True, **common))  # fmt: skip
+    m.phase0()
+    m.phase1()
+    m.phase1b()
+    m.is_label = m.label_mask(m.L)
+    cut = m.cut_vector()
+    assert cut is not None and bool(cut[m.L].eq(1).all())
+    assert float(cut[m.data.dones > 0].sum()) == 0.0  # labels are never terminal; flags exclude terminal rows
+    m.cfg.qr_cut = "core"  # the state-level core cut: labels plus flagged next states, never terminal rows
+    core = m.cut_vector()
+    assert bool(core[m.L].eq(1).all()) and float(core[m.data.dones > 0].sum()) == 0.0
+    assert m.lineage["cut"]["mode"] == "core" and "ref_median_v_c_next" in m.lineage["cut"]

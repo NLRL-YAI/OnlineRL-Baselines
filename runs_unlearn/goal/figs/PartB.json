@@ -1,0 +1,73 @@
+[
+ {
+  "arm": "B_iqlfrozen_k32",
+  "n_runs": 3,
+  "n_eval": 1,
+  "status": [
+   "watchdog after 2 rollbacks: W3_critic_loss",
+   "gate_fail",
+   "gate_fail"
+  ],
+  "succ": "0.000 \u00b1 0.000",
+  "legal": "0.000 \u00b1 0.000",
+  "bug": "0.000 \u00b1 0.000",
+  "patched": "0.000 \u00b1 0.000",
+  "warp_sweep": "0.000 \u00b1 0.000",
+  "onfoot_sweep": "0.000 \u00b1 0.000",
+  "legal_onfoot": "0.821 \u00b1 0.000",
+  "final_lambda": "19.056 \u00b1 0.000"
+ },
+ {
+  "arm": "B_iqlfrozen_k1000",
+  "n_runs": 3,
+  "n_eval": 2,
+  "status": [
+   "gate_fail",
+   "watchdog after 2 rollbacks: W3_critic_loss",
+   "watchdog after 2 rollbacks: W3_critic_loss"
+  ],
+  "succ": "0.000 \u00b1 0.000",
+  "legal": "0.000 \u00b1 0.000",
+  "bug": "0.000 \u00b1 0.000",
+  "patched": "0.000 \u00b1 0.000",
+  "warp_sweep": "0.000 \u00b1 0.000",
+  "onfoot_sweep": "0.000 \u00b1 0.000",
+  "legal_onfoot": "0.844 \u00b1 0.002",
+  "final_lambda": "33.586 \u00b1 3.573"
+ },
+ {
+  "arm": "B_sarsacopy_k32",
+  "n_runs": 3,
+  "n_eval": 0,
+  "status": [
+   "gate_fail",
+   "gate_fail",
+   "gate_fail"
+  ],
+  "succ": "n/a",
+  "legal": "n/a",
+  "bug": "n/a",
+  "patched": "n/a",
+  "warp_sweep": "n/a",
+  "onfoot_sweep": "n/a",
+  "legal_onfoot": "n/a"
+ },
+ {
+  "arm": "B_sarsacopy_k1000",
+  "n_runs": 3,
+  "n_eval": 1,
+  "status": [
+   "t2_max",
+   "gate_fail",
+   "gate_fail"
+  ],
+  "succ": "0.000 \u00b1 0.000",
+  "legal": "0.000 \u00b1 0.000",
+  "bug": "0.000 \u00b1 0.000",
+  "patched": "0.000 \u00b1 0.000",
+  "warp_sweep": "0.000 \u00b1 0.000",
+  "onfoot_sweep": "0.123 \u00b1 0.000",
+  "legal_onfoot": "0.833 \u00b1 0.000",
+  "final_lambda": "48.445 \u00b1 0.000"
+ }
+]

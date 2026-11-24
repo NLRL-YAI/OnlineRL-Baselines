@@ -1,0 +1,210 @@
+{
+  "config": {
+    "parent": "rebrac_bug_s1",
+    "parent_dir": "runs_bugmaze",
+    "dataset": "datasets/antmaze_bug/mix.npz",
+    "k": "B",
+    "draw": 0,
+    "label_file": "",
+    "run_dir": "runs_unlearn",
+    "run_name": "methodA_rebrac_bug_s1_kB_d0_s0_indep_p2b",
+    "seed": 0,
+    "perm_seed": 0,
+    "device": "cuda",
+    "deterministic": true,
+    "phase1_only": false,
+    "cost_init": "reward_trunk",
+    "cost_target": "indep",
+    "cost_model": "label",
+    "pu_steps": 5000,
+    "pu_hidden": 32,
+    "pu_layers": 1,
+    "pu_lr": 0.001,
+    "pu_wd": 0.1,
+    "pu_batch": 256,
+    "pu_noise": 1.0,
+    "pu_eval_every": 100,
+    "cost_loss": "mse",
+    "cost_tau": 0.99,
+    "diag_exclude_file": "",
+    "ignore_gates": false,
+    "t1": 100000,
+    "t2_max": 200000,
+    "batch_size": 256,
+    "m": 16,
+    "extra_risk": 64,
+    "risk_extra_below": 0.1,
+    "holdout_frac": 0.2,
+    "gamma_c": 0.99,
+    "cost_lr": 0.0003,
+    "cost_warmup": 1000,
+    "ruler_source": "holdout",
+    "heldout_auc_min": 0.0,
+    "bounded_min": -2.0,
+    "conv_tol": 0.05,
+    "kappa_g": 0.1,
+    "kappa": 0.05,
+    "lambda_init": 10.0,
+    "lambda_min": 0.01,
+    "lambda_max": 1000.0,
+    "eta_nu": 0.0001,
+    "actor_lr": 0.0001,
+    "alpha_actor": 0.003,
+    "beta": 0.1,
+    "critic_lr": 0.0003,
+    "grad_clip": 10.0,
+    "delta_max": 0.05,
+    "stop_window": 5000,
+    "stop_windows": 3,
+    "infeasible_steps": 20000,
+    "watchdog_every": 1000,
+    "max_rollbacks": 2,
+    "w2_rise": 0.1,
+    "probe_size": 4096,
+    "track_every": 10000,
+    "track_size": 100000,
+    "snapshot_every": 10000,
+    "log_every": 1000,
+    "print_every": 10000
+  },
+  "git_commit": "79789b513a322328ee7929bdb5cb2d96b4e9bda3-dirty",
+  "parent": {
+    "path": "runs_bugmaze/rebrac_bug_s1/actor_1000000.pt",
+    "sha256": "2059051aef1b1f3a2ae8b0becf8e8edc851ab2fb2055e28939f57322933dbd61"
+  },
+  "dataset": {
+    "path": "datasets/antmaze_bug/mix.npz",
+    "sha256": "6d328777b6a44d195a2b28de6607f3232ab687091e7aecf95680f42d141f4f1e",
+    "perm_seed": 0
+  },
+  "labels": {
+    "path": "datasets/antmaze_bug/labels/kB_d0.json",
+    "sha256": "459d879d0d41fa6e632aa2ccd3d64ea7767a57ed79a561ee264da75db3c54747",
+    "k": 8333,
+    "draw_seed": 0
+  },
+  "phase1": {
+    "ruler": 3.9424283504486084,
+    "ruler_source": "holdout",
+    "risk_frac": 0.5673970580101013,
+    "gates_pass": true
+  },
+  "w2_base": 0.2007013383069633,
+  "phase2": {
+    "status": 5,
+    "stop_reason": "watchdog after 2 rollbacks: W3_critic_loss",
+    "final_step": 67000,
+    "stop_rule_step": null,
+    "rollbacks": 2,
+    "final_lambda": 22.741138398148685,
+    "windows": [
+      {
+        "step": 5000,
+        "J": 0.6075972318649292,
+        "anchor": 0.01104668267071247,
+        "lambda": 11.495811436653836,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 10000,
+        "J": 0.5542659640312195,
+        "anchor": 0.010618623718619347,
+        "lambda": 13.040416340783473,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 15000,
+        "J": 0.5047898113727569,
+        "anchor": 0.010962693393230439,
+        "lambda": 14.61073447290353,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 20000,
+        "J": 0.4457025647163391,
+        "anchor": 0.011585186421871185,
+        "lambda": 16.130000043785966,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 25000,
+        "J": 0.3986332893371582,
+        "anchor": 0.010988783091306686,
+        "lambda": 17.59899363502328,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 30000,
+        "J": 0.358930641412735,
+        "anchor": 0.010511460527777673,
+        "lambda": 19.012152366648618,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 35000,
+        "J": 0.31362894773483274,
+        "anchor": 0.010970295779407025,
+        "lambda": 20.307439196518743,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 40000,
+        "J": 0.2430790364742279,
+        "anchor": 0.012430035695433616,
+        "lambda": 21.311727484478844,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 45000,
+        "J": 0.18866560161113738,
+        "anchor": 0.012273301370441914,
+        "lambda": 22.063318125204063,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 50000,
+        "J": 0.13171377182006835,
+        "anchor": 0.012926765158772469,
+        "lambda": 22.518661342278282,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 55000,
+        "J": 0.08725095391273499,
+        "anchor": 0.012259484827518463,
+        "lambda": 22.729413830462274,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 60000,
+        "J": 0.057557714730501176,
+        "anchor": 0.011941678263247013,
+        "lambda": 22.772352047598456,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 65000,
+        "J": 0.043126069754362104,
+        "anchor": 0.010663395561277867,
+        "lambda": 22.741138398148685,
+        "fired": true,
+        "ok": false
+      }
+    ],
+    "minutes": 68.43346135616302
+  },
+  "result": "aborted",
+  "minutes_total": 105.19498978455862
+}
