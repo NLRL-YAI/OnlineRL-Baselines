@@ -1,0 +1,266 @@
+{
+  "config": {
+    "parent": "rebrac_bug_s2",
+    "parent_dir": "runs_bugmaze",
+    "dataset": "datasets/antmaze_bug/mix.npz",
+    "k": "1000",
+    "draw": 0,
+    "label_file": "",
+    "run_dir": "runs_unlearn/budget",
+    "run_name": "CC100p2_k1000_s2",
+    "seed": 2,
+    "perm_seed": 0,
+    "device": "cuda",
+    "deterministic": true,
+    "phase1_only": false,
+    "cost_init": "frozen_trunk",
+    "cost_target": "expectile",
+    "cost_v_tau": 0.7,
+    "cost_model": "label",
+    "pu_steps": 5000,
+    "pu_hidden": 32,
+    "pu_layers": 1,
+    "pu_lr": 0.001,
+    "pu_wd": 0.1,
+    "pu_batch": 256,
+    "pu_noise": 1.0,
+    "pu_eval_every": 100,
+    "qr_cut": "core",
+    "cut_kappa": 0.5,
+    "cut_floor": -100.0,
+    "cut_bc": true,
+    "phase2_cost": "none",
+    "qc_nonneg": true,
+    "cost_loss": "mse",
+    "cost_tau": 0.99,
+    "diag_exclude_file": "",
+    "ignore_gates": true,
+    "t1": 10000,
+    "t2_max": 90000,
+    "batch_size": 256,
+    "m": 16,
+    "extra_risk": 64,
+    "risk_extra_below": 0.1,
+    "holdout_frac": 0.2,
+    "gamma_c": 0.99,
+    "cost_lr": 0.0003,
+    "cost_warmup": 1000,
+    "ruler_source": "holdout",
+    "heldout_auc_min": 0.0,
+    "bounded_min": -2.0,
+    "conv_tol": 0.05,
+    "kappa_g": 0.1,
+    "kappa": 0.05,
+    "lambda_init": 10.0,
+    "lambda_min": 0.01,
+    "lambda_max": 1000.0,
+    "eta_nu": 0.0001,
+    "actor_lr": 0.0001,
+    "alpha_actor": 0.003,
+    "beta": 0.0,
+    "critic_lr": 0.0003,
+    "grad_clip": 10.0,
+    "delta_max": 0.05,
+    "stop_window": 5000,
+    "stop_windows": 3,
+    "infeasible_steps": 20000,
+    "watchdog_every": 1000,
+    "max_rollbacks": 2,
+    "w2_rise": 0.1,
+    "probe_size": 4096,
+    "track_every": 2000,
+    "track_size": 100000,
+    "snapshot_every": 10000,
+    "log_every": 1000,
+    "print_every": 10000
+  },
+  "git_commit": "b8fa20fdd72025e5bab45585c385b8dcbfa0e2ab-dirty",
+  "parent": {
+    "path": "runs_bugmaze/rebrac_bug_s2/actor_1000000.pt",
+    "sha256": "11d60d309f11483b2d72920edf0cfac10709bbd48aa17504ab6f1f499e6613c5"
+  },
+  "dataset": {
+    "path": "datasets/antmaze_bug/mix.npz",
+    "sha256": "6d328777b6a44d195a2b28de6607f3232ab687091e7aecf95680f42d141f4f1e",
+    "perm_seed": 0
+  },
+  "labels": {
+    "path": "datasets/antmaze_bug/labels/k1000_d0.json",
+    "sha256": "e6617210a34528cbac09a09f09fa28146ca8f505d32faf5d7060e87f51025a78",
+    "k": 1000,
+    "draw_seed": 0
+  },
+  "phase1": {
+    "ruler": 4.561995983123779,
+    "ruler_source": "holdout",
+    "risk_frac": 0.07667458802461624,
+    "gates_pass": true
+  },
+  "cut": {
+    "mode": "core",
+    "n_labels": 1000,
+    "ref_median_v_c_next": 3.5231270790100098,
+    "threshold": 1.7615635395050049,
+    "n_flagged_unlabelled": 32664,
+    "n_cut": 33664,
+    "frac_cut": 0.029647191986441612
+  },
+  "w2_base": 0.009548485174448656,
+  "phase2": {
+    "status": 0,
+    "stop_reason": "t2_max",
+    "final_step": 90000,
+    "stop_rule_step": null,
+    "rollbacks": 0,
+    "final_lambda": 10.000000319754372,
+    "windows": [
+      {
+        "step": 5000,
+        "J": 0.45048183798789976,
+        "anchor": 0.3615673303604126,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 10000,
+        "J": 0.44796604514122007,
+        "anchor": 0.3470059335231781,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 15000,
+        "J": 0.4448008000850677,
+        "anchor": 0.337919020652771,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 20000,
+        "J": 0.4469189405441284,
+        "anchor": 0.33529587388038634,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 25000,
+        "J": 0.4445757567882538,
+        "anchor": 0.37276809811592104,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 30000,
+        "J": 0.44813844561576843,
+        "anchor": 0.4312718451023102,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 35000,
+        "J": 0.44801062941551206,
+        "anchor": 0.42239164710044863,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 40000,
+        "J": 0.44727210998535155,
+        "anchor": 0.4248304605484009,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 45000,
+        "J": 0.4473385751247406,
+        "anchor": 0.43102102279663085,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 50000,
+        "J": 0.4488281786441803,
+        "anchor": 0.4465340137481689,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 55000,
+        "J": 0.44806880950927735,
+        "anchor": 0.463824188709259,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 60000,
+        "J": 0.4490014910697937,
+        "anchor": 0.4750512480735779,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 65000,
+        "J": 0.4467505931854248,
+        "anchor": 0.4888943910598755,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 70000,
+        "J": 0.45004344582557676,
+        "anchor": 0.503749030828476,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 75000,
+        "J": 0.4514122843742371,
+        "anchor": 0.5125474572181702,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 80000,
+        "J": 0.45126054883003236,
+        "anchor": 0.5169148564338684,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 85000,
+        "J": 0.44961096048355104,
+        "anchor": 0.5228461146354675,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      },
+      {
+        "step": 90000,
+        "J": 0.4505935192108154,
+        "anchor": 0.5382291674613953,
+        "lambda": 10.000000319754372,
+        "fired": false,
+        "ok": false
+      }
+    ],
+    "minutes": 50.75253669023514
+  },
+  "result": "completed",
+  "minutes_total": 53.75424250761668
+}
