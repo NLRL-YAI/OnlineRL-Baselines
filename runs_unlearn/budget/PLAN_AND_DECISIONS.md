@@ -53,3 +53,18 @@ Context measured first: a clean ReBRAC retrain from scratch already reaches 0.82
 7. **Label-draw check (for the full diagnostic, user request 2026-11-24 evening).** All earlier CC100 seeds used label
    draw 0, so the seeds varied training randomness but not which bug rows were labelled. Added draws 1 and 2 at k = 32
    and k = 1000 (parent s1, seed 0): runs `CC100_k{k}_d{1,2}_s0`. They start after the parent-s2 repeat.
+8. **Floor sweep (decided without the user, per the overnight rule, 2026-11-24 ~22:40).** Core cut at k = 32, parent s1,
+   seeds 0–2, 100k total, with cut_floor −50 (above the legal route's value ≈ −99: predicted to fail) and −1000
+   (below the task minimum −100: untested). Runs `CC100_k32_floor{50,1000}_s*`.
+   - γ = 0.995 was dropped: γ is read from the parent checkpoint, so changing it needs a code change and a critic
+     trained at a different discount.
+   - A data-derived floor (minimum parent value over the dataset) was dropped: it is about −96 to −99 here, so it
+     falls between the two tested points.
+9. **Flipped maze figures regenerated** (AS page P2 value maps, Unlearning Phase D2 false-positive map) in the repo's
+   orientation (start bottom-left).
+- **Result of decision 8 (floor sweep, k = 32, parent s1, seeds 0–2; identical cuts to CC100_k32_s*):**
+  - floor −50: legal 0.00 in all seeds. Seed 0 warps again (bug use 0.79); seeds 1–2 stall every episode (stall 1.00).
+  - floor −1000: all seeds aborted at 2–3k steps by watchdog W3_value_range (mean Q_R outside [−105, 5]), exit 5,
+    no final evaluation. Recorded as a result, not tuned.
+  - Conclusion: the floor must equal the task minimum r_min/(1 − γ) = −100. Documented in Notion (core-cut page Part D,
+    presentation page §5.7).
