@@ -14,12 +14,15 @@ change them for another account.
 | `packrun.sh K:SEED ...` | the same inside an existing allocation: `srun --jobid=J --overlap -n1 ./packrun.sh ...` (**`-n1` is required**: without it srun starts one task per `cpus-per-task` share and every run executes twice) |
 | `eval_ksweep.sbatch` | evaluation only, for runs whose training finished |
 | `ftref.sbatch`, `scratch_s*.sbatch` | k = 32 fine-tuning reference and the from-scratch baseline |
+| `scr_eval.sbatch` | finish the from-scratch evaluations after a preemption |
 | `smoke.sbatch` | k = 1, a few thousand steps |
 | `check_dup.py`, `dedup.py` | check and clean the run folders that two identical processes wrote at once |
 
 Cluster facts that cost time:
 - QoS `big_qos` requires a GPU per job (CPU-only jobs pend with `QOSMinGRES`).
 - Nodes with a broken GPU: node02 and node05 (`CUDA unknown error`); node24 drains. All scripts exclude them.
+- Jobs can be preempted (`PreemptType preempt/qos`, `PreemptMode CANCEL`): the job is cancelled, not requeued. Keep
+  training and evaluation restartable; `unlearn.evaluate` already skips evaluated snapshots.
 - The default open-file limit is 1024. `unlearn.evaluate` builds 200 environments and `ogbench` keeps one temp-file
   descriptor open per environment, so set `ulimit -n 65536` first (the hard limit on GPU nodes is 131072).
 - Downloads from the cluster are slow (about 0.5 MB/s from PyPI, pytorch.org and GitHub). Copy large files from a

@@ -105,6 +105,9 @@ uvx ruff format unlearn tests && uvx ruff check unlearn tests
   loss grows by orders of magnitude while values form).
 - k sweep of the core cut (k = 1..128, 3 seeds, label draw = seed): `runs_unlearn/ksweep/SUMMARY.md`. The cut reference
   (median V_C(s') over the reference labels) collapses to <= 0 in 3 of 24 runs, and then only the k labels are cut.
+- From-scratch baseline at k = 32 (cut applied while a fresh policy learns, penalty −100/−200, 1M steps):
+  `runs_unlearn/scratch/SUMMARY.md`. The warp goes but the policy never learns to walk (seeds 1–2); diagnostics in
+  `scripts/scratch_diagnose.py`.
 - Cluster (yonsei-ai, Slurm) scripts and pitfalls: `scripts/cluster/README.md`.
 - Speed: on the shared lab machine (Titan V, contended CPU) training is kernel-launch bound: about
   10–20 ms per Phase 1 step and 30–60 ms per Phase 2 step, several times the spec's estimates.
