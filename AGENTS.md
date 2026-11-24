@@ -100,6 +100,12 @@ uvx ruff format unlearn tests && uvx ruff check unlearn tests
 - Exit status of `unlearn.train`: 0 completed, 3 gate check failed, 4 infeasible, 5 aborted. A gate
   failure or infeasibility is a result to record, not an error to tune away.
 - `--ignore_gates true` exists for smoke tests only; it's recorded in the lineage.
+- `--policy_init scratch` trains a fresh actor and Q_R on the cut MDP (safe-RL-from-scratch baseline; Phase 1 still uses
+  the parent). `--watchdogs false` keeps the watchdogs in the log but never rolls back (needed from scratch: the critic
+  loss grows by orders of magnitude while values form).
+- k sweep of the core cut (k = 1..128, 3 seeds, label draw = seed): `runs_unlearn/ksweep/SUMMARY.md`. The cut reference
+  (median V_C(s') over the reference labels) collapses to <= 0 in 3 of 24 runs, and then only the k labels are cut.
+- Cluster (yonsei-ai, Slurm) scripts and pitfalls: `scripts/cluster/README.md`.
 - Speed: on the shared lab machine (Titan V, contended CPU) training is kernel-launch bound: about
   10–20 ms per Phase 1 step and 30–60 ms per Phase 2 step, several times the spec's estimates.
 

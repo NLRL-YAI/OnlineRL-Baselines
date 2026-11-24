@@ -1,0 +1,439 @@
+{
+ "repo": "NLRL-YAI/OnlineRL-Baselines",
+ "tag": "unlearn-ksweep-v1",
+ "extract_to": "runs_unlearn/ksweep",
+ "assets": [
+  {
+   "name": "CCk_k128_d0_s0.tar",
+   "size": 95426560,
+   "sha256": "d038b87af9f590b57ec02ba2c940a714e8c4c6ff994ca0c28d98e22c01097fe3",
+   "files": [
+    "CCk_k128_d0_s0/phase1.pt",
+    "CCk_k128_d0_s0/snap_0010000.pt",
+    "CCk_k128_d0_s0/snap_0020000.pt",
+    "CCk_k128_d0_s0/snap_0030000.pt",
+    "CCk_k128_d0_s0/snap_0040000.pt",
+    "CCk_k128_d0_s0/snap_0050000.pt",
+    "CCk_k128_d0_s0/snap_0060000.pt",
+    "CCk_k128_d0_s0/snap_0070000.pt",
+    "CCk_k128_d0_s0/snap_0080000.pt",
+    "CCk_k128_d0_s0/snap_0090000.pt",
+    "CCk_k128_d0_s0/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k128_d1_s1.tar",
+   "size": 95426560,
+   "sha256": "9ba698412c07411eaa192265609558e2882a32464f1a22d2d50dd84dc28ec925",
+   "files": [
+    "CCk_k128_d1_s1/phase1.pt",
+    "CCk_k128_d1_s1/snap_0010000.pt",
+    "CCk_k128_d1_s1/snap_0020000.pt",
+    "CCk_k128_d1_s1/snap_0030000.pt",
+    "CCk_k128_d1_s1/snap_0040000.pt",
+    "CCk_k128_d1_s1/snap_0050000.pt",
+    "CCk_k128_d1_s1/snap_0060000.pt",
+    "CCk_k128_d1_s1/snap_0070000.pt",
+    "CCk_k128_d1_s1/snap_0080000.pt",
+    "CCk_k128_d1_s1/snap_0090000.pt",
+    "CCk_k128_d1_s1/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k128_d2_s2.tar",
+   "size": 95426560,
+   "sha256": "5a3b129603cad2e296443a62bef2e8cd54f3f4fd4ad2155e192ef7e5cb8ed2e5",
+   "files": [
+    "CCk_k128_d2_s2/phase1.pt",
+    "CCk_k128_d2_s2/snap_0010000.pt",
+    "CCk_k128_d2_s2/snap_0020000.pt",
+    "CCk_k128_d2_s2/snap_0030000.pt",
+    "CCk_k128_d2_s2/snap_0040000.pt",
+    "CCk_k128_d2_s2/snap_0050000.pt",
+    "CCk_k128_d2_s2/snap_0060000.pt",
+    "CCk_k128_d2_s2/snap_0070000.pt",
+    "CCk_k128_d2_s2/snap_0080000.pt",
+    "CCk_k128_d2_s2/snap_0090000.pt",
+    "CCk_k128_d2_s2/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k16_d0_s0.tar",
+   "size": 95426560,
+   "sha256": "22519ca0640dffc2d2db2b25396b58a04fa1cbddd460ce537ff7b99cad7ce31e",
+   "files": [
+    "CCk_k16_d0_s0/phase1.pt",
+    "CCk_k16_d0_s0/snap_0010000.pt",
+    "CCk_k16_d0_s0/snap_0020000.pt",
+    "CCk_k16_d0_s0/snap_0030000.pt",
+    "CCk_k16_d0_s0/snap_0040000.pt",
+    "CCk_k16_d0_s0/snap_0050000.pt",
+    "CCk_k16_d0_s0/snap_0060000.pt",
+    "CCk_k16_d0_s0/snap_0070000.pt",
+    "CCk_k16_d0_s0/snap_0080000.pt",
+    "CCk_k16_d0_s0/snap_0090000.pt",
+    "CCk_k16_d0_s0/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k16_d1_s1.tar",
+   "size": 95426560,
+   "sha256": "f43020025400dc99ba68b23023f24c95cde4eaa8c1f7536c64edca44a5d6c552",
+   "files": [
+    "CCk_k16_d1_s1/phase1.pt",
+    "CCk_k16_d1_s1/snap_0010000.pt",
+    "CCk_k16_d1_s1/snap_0020000.pt",
+    "CCk_k16_d1_s1/snap_0030000.pt",
+    "CCk_k16_d1_s1/snap_0040000.pt",
+    "CCk_k16_d1_s1/snap_0050000.pt",
+    "CCk_k16_d1_s1/snap_0060000.pt",
+    "CCk_k16_d1_s1/snap_0070000.pt",
+    "CCk_k16_d1_s1/snap_0080000.pt",
+    "CCk_k16_d1_s1/snap_0090000.pt",
+    "CCk_k16_d1_s1/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k16_d2_s2.tar",
+   "size": 95426560,
+   "sha256": "025d5df0766275343052d0f367016b6f4a925376b544808b453e6590ec6d207e",
+   "files": [
+    "CCk_k16_d2_s2/phase1.pt",
+    "CCk_k16_d2_s2/snap_0010000.pt",
+    "CCk_k16_d2_s2/snap_0020000.pt",
+    "CCk_k16_d2_s2/snap_0030000.pt",
+    "CCk_k16_d2_s2/snap_0040000.pt",
+    "CCk_k16_d2_s2/snap_0050000.pt",
+    "CCk_k16_d2_s2/snap_0060000.pt",
+    "CCk_k16_d2_s2/snap_0070000.pt",
+    "CCk_k16_d2_s2/snap_0080000.pt",
+    "CCk_k16_d2_s2/snap_0090000.pt",
+    "CCk_k16_d2_s2/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k1_d0_s0.tar",
+   "size": 95426560,
+   "sha256": "0815a7e7b05c1ff0a4b74cedd2cda59661b9e77a03d31fe8d7236c944605899a",
+   "files": [
+    "CCk_k1_d0_s0/phase1.pt",
+    "CCk_k1_d0_s0/snap_0010000.pt",
+    "CCk_k1_d0_s0/snap_0020000.pt",
+    "CCk_k1_d0_s0/snap_0030000.pt",
+    "CCk_k1_d0_s0/snap_0040000.pt",
+    "CCk_k1_d0_s0/snap_0050000.pt",
+    "CCk_k1_d0_s0/snap_0060000.pt",
+    "CCk_k1_d0_s0/snap_0070000.pt",
+    "CCk_k1_d0_s0/snap_0080000.pt",
+    "CCk_k1_d0_s0/snap_0090000.pt",
+    "CCk_k1_d0_s0/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k1_d1_s1.tar",
+   "size": 95426560,
+   "sha256": "8d8fe91ce899054a82fe2eb50cfe8f95a7a25d704be959b3e303b3d2ef6d9073",
+   "files": [
+    "CCk_k1_d1_s1/phase1.pt",
+    "CCk_k1_d1_s1/snap_0010000.pt",
+    "CCk_k1_d1_s1/snap_0020000.pt",
+    "CCk_k1_d1_s1/snap_0030000.pt",
+    "CCk_k1_d1_s1/snap_0040000.pt",
+    "CCk_k1_d1_s1/snap_0050000.pt",
+    "CCk_k1_d1_s1/snap_0060000.pt",
+    "CCk_k1_d1_s1/snap_0070000.pt",
+    "CCk_k1_d1_s1/snap_0080000.pt",
+    "CCk_k1_d1_s1/snap_0090000.pt",
+    "CCk_k1_d1_s1/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k1_d2_s2.tar",
+   "size": 95426560,
+   "sha256": "afb52dc3eafacdfb469a6a5ae3f244ccf7b7eb119a83a5840ea8e3f15670e8f1",
+   "files": [
+    "CCk_k1_d2_s2/phase1.pt",
+    "CCk_k1_d2_s2/snap_0010000.pt",
+    "CCk_k1_d2_s2/snap_0020000.pt",
+    "CCk_k1_d2_s2/snap_0030000.pt",
+    "CCk_k1_d2_s2/snap_0040000.pt",
+    "CCk_k1_d2_s2/snap_0050000.pt",
+    "CCk_k1_d2_s2/snap_0060000.pt",
+    "CCk_k1_d2_s2/snap_0070000.pt",
+    "CCk_k1_d2_s2/snap_0080000.pt",
+    "CCk_k1_d2_s2/snap_0090000.pt",
+    "CCk_k1_d2_s2/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k2_d0_s0.tar",
+   "size": 95426560,
+   "sha256": "f5ecbb4c5adbb769185a3be4f60de7843d1959fd2f36173b78eaed48221bf765",
+   "files": [
+    "CCk_k2_d0_s0/phase1.pt",
+    "CCk_k2_d0_s0/snap_0010000.pt",
+    "CCk_k2_d0_s0/snap_0020000.pt",
+    "CCk_k2_d0_s0/snap_0030000.pt",
+    "CCk_k2_d0_s0/snap_0040000.pt",
+    "CCk_k2_d0_s0/snap_0050000.pt",
+    "CCk_k2_d0_s0/snap_0060000.pt",
+    "CCk_k2_d0_s0/snap_0070000.pt",
+    "CCk_k2_d0_s0/snap_0080000.pt",
+    "CCk_k2_d0_s0/snap_0090000.pt",
+    "CCk_k2_d0_s0/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k2_d1_s1.tar",
+   "size": 95426560,
+   "sha256": "ca5ac8159be2104ef45ca95d9de454e3026a57e6a73b7fac6080c532605b08a9",
+   "files": [
+    "CCk_k2_d1_s1/phase1.pt",
+    "CCk_k2_d1_s1/snap_0010000.pt",
+    "CCk_k2_d1_s1/snap_0020000.pt",
+    "CCk_k2_d1_s1/snap_0030000.pt",
+    "CCk_k2_d1_s1/snap_0040000.pt",
+    "CCk_k2_d1_s1/snap_0050000.pt",
+    "CCk_k2_d1_s1/snap_0060000.pt",
+    "CCk_k2_d1_s1/snap_0070000.pt",
+    "CCk_k2_d1_s1/snap_0080000.pt",
+    "CCk_k2_d1_s1/snap_0090000.pt",
+    "CCk_k2_d1_s1/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k2_d2_s2.tar",
+   "size": 95426560,
+   "sha256": "0afd479b89a5982766e1ef5aa84c2d44f33311c3fa67760f6427e2771094ac1c",
+   "files": [
+    "CCk_k2_d2_s2/phase1.pt",
+    "CCk_k2_d2_s2/snap_0010000.pt",
+    "CCk_k2_d2_s2/snap_0020000.pt",
+    "CCk_k2_d2_s2/snap_0030000.pt",
+    "CCk_k2_d2_s2/snap_0040000.pt",
+    "CCk_k2_d2_s2/snap_0050000.pt",
+    "CCk_k2_d2_s2/snap_0060000.pt",
+    "CCk_k2_d2_s2/snap_0070000.pt",
+    "CCk_k2_d2_s2/snap_0080000.pt",
+    "CCk_k2_d2_s2/snap_0090000.pt",
+    "CCk_k2_d2_s2/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k32_d0_s0.tar",
+   "size": 95426560,
+   "sha256": "b0f39730e282d1bde37b35c0caf86e1dd900a8afec9134f9d2a10a6994b5e55c",
+   "files": [
+    "CCk_k32_d0_s0/phase1.pt",
+    "CCk_k32_d0_s0/snap_0010000.pt",
+    "CCk_k32_d0_s0/snap_0020000.pt",
+    "CCk_k32_d0_s0/snap_0030000.pt",
+    "CCk_k32_d0_s0/snap_0040000.pt",
+    "CCk_k32_d0_s0/snap_0050000.pt",
+    "CCk_k32_d0_s0/snap_0060000.pt",
+    "CCk_k32_d0_s0/snap_0070000.pt",
+    "CCk_k32_d0_s0/snap_0080000.pt",
+    "CCk_k32_d0_s0/snap_0090000.pt",
+    "CCk_k32_d0_s0/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k32_d1_s1.tar",
+   "size": 95426560,
+   "sha256": "70e13d557b360dff874821c6cb2a900629455184aa1bd3f6ae822b30cc17dc74",
+   "files": [
+    "CCk_k32_d1_s1/phase1.pt",
+    "CCk_k32_d1_s1/snap_0010000.pt",
+    "CCk_k32_d1_s1/snap_0020000.pt",
+    "CCk_k32_d1_s1/snap_0030000.pt",
+    "CCk_k32_d1_s1/snap_0040000.pt",
+    "CCk_k32_d1_s1/snap_0050000.pt",
+    "CCk_k32_d1_s1/snap_0060000.pt",
+    "CCk_k32_d1_s1/snap_0070000.pt",
+    "CCk_k32_d1_s1/snap_0080000.pt",
+    "CCk_k32_d1_s1/snap_0090000.pt",
+    "CCk_k32_d1_s1/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k32_d2_s2.tar",
+   "size": 95426560,
+   "sha256": "010b6776c7a9859d4572ad2429dcdccad932c7ca2f5aa5319093df514ea56166",
+   "files": [
+    "CCk_k32_d2_s2/phase1.pt",
+    "CCk_k32_d2_s2/snap_0010000.pt",
+    "CCk_k32_d2_s2/snap_0020000.pt",
+    "CCk_k32_d2_s2/snap_0030000.pt",
+    "CCk_k32_d2_s2/snap_0040000.pt",
+    "CCk_k32_d2_s2/snap_0050000.pt",
+    "CCk_k32_d2_s2/snap_0060000.pt",
+    "CCk_k32_d2_s2/snap_0070000.pt",
+    "CCk_k32_d2_s2/snap_0080000.pt",
+    "CCk_k32_d2_s2/snap_0090000.pt",
+    "CCk_k32_d2_s2/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k4_d0_s0.tar",
+   "size": 95426560,
+   "sha256": "642f53b98cd49d15ff7ee7a02ff1e3f042d250429fa462cc408df53921f9e6d5",
+   "files": [
+    "CCk_k4_d0_s0/phase1.pt",
+    "CCk_k4_d0_s0/snap_0010000.pt",
+    "CCk_k4_d0_s0/snap_0020000.pt",
+    "CCk_k4_d0_s0/snap_0030000.pt",
+    "CCk_k4_d0_s0/snap_0040000.pt",
+    "CCk_k4_d0_s0/snap_0050000.pt",
+    "CCk_k4_d0_s0/snap_0060000.pt",
+    "CCk_k4_d0_s0/snap_0070000.pt",
+    "CCk_k4_d0_s0/snap_0080000.pt",
+    "CCk_k4_d0_s0/snap_0090000.pt",
+    "CCk_k4_d0_s0/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k4_d1_s1.tar",
+   "size": 95426560,
+   "sha256": "6a95c66f8c81fbdbbfbb0790578aa8931d9c85eb5f42aa7aea26b38dd370db1f",
+   "files": [
+    "CCk_k4_d1_s1/phase1.pt",
+    "CCk_k4_d1_s1/snap_0010000.pt",
+    "CCk_k4_d1_s1/snap_0020000.pt",
+    "CCk_k4_d1_s1/snap_0030000.pt",
+    "CCk_k4_d1_s1/snap_0040000.pt",
+    "CCk_k4_d1_s1/snap_0050000.pt",
+    "CCk_k4_d1_s1/snap_0060000.pt",
+    "CCk_k4_d1_s1/snap_0070000.pt",
+    "CCk_k4_d1_s1/snap_0080000.pt",
+    "CCk_k4_d1_s1/snap_0090000.pt",
+    "CCk_k4_d1_s1/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k4_d2_s2.tar",
+   "size": 95426560,
+   "sha256": "dc40f410bf216d72673bfcb3c97ab1a767321cc7b6082d2e13a8711cb7015f0e",
+   "files": [
+    "CCk_k4_d2_s2/phase1.pt",
+    "CCk_k4_d2_s2/snap_0010000.pt",
+    "CCk_k4_d2_s2/snap_0020000.pt",
+    "CCk_k4_d2_s2/snap_0030000.pt",
+    "CCk_k4_d2_s2/snap_0040000.pt",
+    "CCk_k4_d2_s2/snap_0050000.pt",
+    "CCk_k4_d2_s2/snap_0060000.pt",
+    "CCk_k4_d2_s2/snap_0070000.pt",
+    "CCk_k4_d2_s2/snap_0080000.pt",
+    "CCk_k4_d2_s2/snap_0090000.pt",
+    "CCk_k4_d2_s2/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k64_d0_s0.tar",
+   "size": 95426560,
+   "sha256": "9de9304590d5670f7b1ac4d88dcdbe772f30710caee9e84c2c68f6ef79d68d05",
+   "files": [
+    "CCk_k64_d0_s0/phase1.pt",
+    "CCk_k64_d0_s0/snap_0010000.pt",
+    "CCk_k64_d0_s0/snap_0020000.pt",
+    "CCk_k64_d0_s0/snap_0030000.pt",
+    "CCk_k64_d0_s0/snap_0040000.pt",
+    "CCk_k64_d0_s0/snap_0050000.pt",
+    "CCk_k64_d0_s0/snap_0060000.pt",
+    "CCk_k64_d0_s0/snap_0070000.pt",
+    "CCk_k64_d0_s0/snap_0080000.pt",
+    "CCk_k64_d0_s0/snap_0090000.pt",
+    "CCk_k64_d0_s0/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k64_d1_s1.tar",
+   "size": 95426560,
+   "sha256": "55e30b6496550281bc51a58dd09798e22dc052bf330d4ba2b740eb22577db9e4",
+   "files": [
+    "CCk_k64_d1_s1/phase1.pt",
+    "CCk_k64_d1_s1/snap_0010000.pt",
+    "CCk_k64_d1_s1/snap_0020000.pt",
+    "CCk_k64_d1_s1/snap_0030000.pt",
+    "CCk_k64_d1_s1/snap_0040000.pt",
+    "CCk_k64_d1_s1/snap_0050000.pt",
+    "CCk_k64_d1_s1/snap_0060000.pt",
+    "CCk_k64_d1_s1/snap_0070000.pt",
+    "CCk_k64_d1_s1/snap_0080000.pt",
+    "CCk_k64_d1_s1/snap_0090000.pt",
+    "CCk_k64_d1_s1/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k64_d2_s2.tar",
+   "size": 95426560,
+   "sha256": "f8bb6a80b0046ea7bd6a1cc7b970ec9a864adc1161b3e30b12b0506636ce964b",
+   "files": [
+    "CCk_k64_d2_s2/phase1.pt",
+    "CCk_k64_d2_s2/snap_0010000.pt",
+    "CCk_k64_d2_s2/snap_0020000.pt",
+    "CCk_k64_d2_s2/snap_0030000.pt",
+    "CCk_k64_d2_s2/snap_0040000.pt",
+    "CCk_k64_d2_s2/snap_0050000.pt",
+    "CCk_k64_d2_s2/snap_0060000.pt",
+    "CCk_k64_d2_s2/snap_0070000.pt",
+    "CCk_k64_d2_s2/snap_0080000.pt",
+    "CCk_k64_d2_s2/snap_0090000.pt",
+    "CCk_k64_d2_s2/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k8_d0_s0.tar",
+   "size": 95426560,
+   "sha256": "f9a2b3fbb73b4f6a130eab69f04a2ac68ca73ecf45a5808b45e0484f85d9230b",
+   "files": [
+    "CCk_k8_d0_s0/phase1.pt",
+    "CCk_k8_d0_s0/snap_0010000.pt",
+    "CCk_k8_d0_s0/snap_0020000.pt",
+    "CCk_k8_d0_s0/snap_0030000.pt",
+    "CCk_k8_d0_s0/snap_0040000.pt",
+    "CCk_k8_d0_s0/snap_0050000.pt",
+    "CCk_k8_d0_s0/snap_0060000.pt",
+    "CCk_k8_d0_s0/snap_0070000.pt",
+    "CCk_k8_d0_s0/snap_0080000.pt",
+    "CCk_k8_d0_s0/snap_0090000.pt",
+    "CCk_k8_d0_s0/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k8_d1_s1.tar",
+   "size": 95426560,
+   "sha256": "2fea4f551f189e0d976201b0ec7169d2d2b900ce9858d130632d29c9a13c94d8",
+   "files": [
+    "CCk_k8_d1_s1/phase1.pt",
+    "CCk_k8_d1_s1/snap_0010000.pt",
+    "CCk_k8_d1_s1/snap_0020000.pt",
+    "CCk_k8_d1_s1/snap_0030000.pt",
+    "CCk_k8_d1_s1/snap_0040000.pt",
+    "CCk_k8_d1_s1/snap_0050000.pt",
+    "CCk_k8_d1_s1/snap_0060000.pt",
+    "CCk_k8_d1_s1/snap_0070000.pt",
+    "CCk_k8_d1_s1/snap_0080000.pt",
+    "CCk_k8_d1_s1/snap_0090000.pt",
+    "CCk_k8_d1_s1/final.pt"
+   ]
+  },
+  {
+   "name": "CCk_k8_d2_s2.tar",
+   "size": 95426560,
+   "sha256": "9914c494eb89315117fc90814069e28d3d55a1424b6dd9e13aa4e66d4e060f6c",
+   "files": [
+    "CCk_k8_d2_s2/phase1.pt",
+    "CCk_k8_d2_s2/snap_0010000.pt",
+    "CCk_k8_d2_s2/snap_0020000.pt",
+    "CCk_k8_d2_s2/snap_0030000.pt",
+    "CCk_k8_d2_s2/snap_0040000.pt",
+    "CCk_k8_d2_s2/snap_0050000.pt",
+    "CCk_k8_d2_s2/snap_0060000.pt",
+    "CCk_k8_d2_s2/snap_0070000.pt",
+    "CCk_k8_d2_s2/snap_0080000.pt",
+    "CCk_k8_d2_s2/snap_0090000.pt",
+    "CCk_k8_d2_s2/final.pt"
+   ]
+  }
+ ]
+}

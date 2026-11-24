@@ -1,0 +1,3 @@
+Two identical processes (same seed, same GPU, deterministic) trained and evaluated this run at the same time
+(an srun --overlap step launched 2 tasks). Every duplicated log row was identical and every checkpoint loads;
+the duplicates were removed from the csv logs, keeping the first row of each step.

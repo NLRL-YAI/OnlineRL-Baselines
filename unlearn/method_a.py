@@ -24,7 +24,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from bugmaze.rebrac import CsvLogger, mlp
+from bugmaze.rebrac import Actor, Critic, CsvLogger, mlp
 
 from .config import UnlearnConfig
 from .data import UnlearnDataset
@@ -137,6 +137,14 @@ class MethodA:
         self.parent_config = p.ckpt_config
         self.actor, self.actor_t, self.actor_opt = p.actor, p.actor_t, p.actor_opt
         self.qr, self.qr_t, self.qr_opt = p.critic, p.critic_t, p.critic_opt
+        if cfg.policy_init == "scratch":  # baseline: learn the policy from scratch on the cut MDP (pi_0 stays the parent)
+            fused_ = dev.type == "cuda"
+            self.actor = Actor(p.obs_dim, p.act_dim, self.rc).to(dev)
+            self.qr = Critic(p.obs_dim, p.act_dim, self.rc).to(dev)
+            self.actor_t, self.qr_t = freeze(self.actor), freeze(self.qr)
+            self.actor_opt = torch.optim.Adam(self.actor.parameters(), lr=cfg.actor_lr, fused=fused_)
+            self.qr_opt = torch.optim.Adam(self.qr.parameters(), lr=cfg.critic_lr, fused=fused_)
+        self.lineage["policy_init"] = cfg.policy_init
         self.pi0 = freeze(p.actor)
         self.qc = cost_critic_from(p.critic, cfg.cost_init)
         self.qc_t = freeze(self.qc)
@@ -542,7 +550,7 @@ class MethodA:
                         flush=True,
                     )
 
-                if fired:
+                if fired and cfg.watchdogs:
                     win["fired"] = True
                     if rollbacks >= cfg.max_rollbacks:
                         status, reason = EXIT_ABORT, f"watchdog after {rollbacks} rollbacks: {'|'.join(fired)}"
@@ -553,7 +561,7 @@ class MethodA:
                     for grp in self.actor_opt.param_groups:
                         grp["lr"] *= 0.5
                     print(f"[watchdog] step {step}: {'|'.join(fired)} -> rollback {rollbacks}, actor lr halved", flush=True)
-                else:
+                elif cfg.watchdogs:
                     last_good = capture(self.modules(), self.opts(), {"nu": nu.item()})
                 win["J"].append(row["J_hat"])
                 win["anchor"].append(row["anchor_out"])

@@ -1,0 +1,63 @@
+{
+  "ruler": 3.0926051139831543,
+  "ruler_source": "fit",
+  "ruler_fit": 3.0926051139831543,
+  "ruler_holdout": NaN,
+  "risk_frac_holdout_ruler": 0.0,
+  "pu": null,
+  "risk_frac": 0.03767194226384163,
+  "kappa_g": 0.1,
+  "phase1_track": [
+    {
+      "step": 2000,
+      "ruler": 2.8934311866760254,
+      "risk_frac": 0.03799999877810478
+    },
+    {
+      "step": 4000,
+      "ruler": 3.438185214996338,
+      "risk_frac": 0.03050999902188778
+    },
+    {
+      "step": 6000,
+      "ruler": 3.32913875579834,
+      "risk_frac": 0.029439998790621758
+    },
+    {
+      "step": 8000,
+      "ruler": 2.8425135612487793,
+      "risk_frac": 0.03441999852657318
+    },
+    {
+      "step": 10000,
+      "ruler": 3.0926051139831543,
+      "risk_frac": 0.03763999789953232
+    }
+  ],
+  "gates": {
+    "converged": {
+      "pass": false,
+      "ruler_change": 0.0879825363522643,
+      "risk_change": 0.09355024726317782
+    },
+    "safe_region": {
+      "pass": true,
+      "frac_below_2pct_ruler": 0.8387643694877625
+    },
+    "risk_set": {
+      "pass": true,
+      "frac": 0.03767194226384163
+    },
+    "heldout_auc": {
+      "pass": true,
+      "skipped": "k < 10"
+    },
+    "bounded": {
+      "pass": true,
+      "min": -1.4346632957458496,
+      "max": 4.998207092285156,
+      "floor": -2.0
+    }
+  },
+  "pass": false
+}

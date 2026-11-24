@@ -55,6 +55,10 @@ class UnlearnConfig:
     cost_tau: float = 0.99
     diag_exclude_file: str = ""  # DIAGNOSTIC only: rows (original idx) dropped from the cost loss (audit_cost exclude)
     ignore_gates: bool = False  # debug/smoke only: run Phase 2 even if a gate check fails (recorded in lineage)
+    policy_init: str = "parent"  # "parent": fine-tune pi_0 and Q_R (unlearning); "scratch": fresh actor and Q_R with stage 1
+    #                              initialisation, fresh optimisers (safe-RL-from-scratch baseline; Phase 1 still uses the parent)
+    watchdogs: bool = True  # False: watchdogs are logged but never roll back or abort (from scratch the critic loss
+    #                         grows by orders of magnitude while values form, which W3 would read as divergence)
     # budget
     t1: int = 100_000  # Phase 1 steps
     t2_max: int = 200_000  # Phase 2 cap
@@ -112,6 +116,8 @@ class UnlearnConfig:
             raise ValueError(f"cost_model must be label or pu, got {self.cost_model}")
         if self.cost_loss not in ("mse", "expectile"):
             raise ValueError(f"cost_loss must be mse or expectile, got {self.cost_loss}")
+        if self.policy_init not in ("parent", "scratch"):
+            raise ValueError(f"policy_init must be parent or scratch, got {self.policy_init}")
         if self.qr_cut not in ("none", "labels", "implied", "core"):
             raise ValueError(f"qr_cut must be none, labels, implied or core, got {self.qr_cut}")
         if self.phase2_cost not in ("lagrangian", "none"):
